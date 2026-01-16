@@ -1,4 +1,4 @@
-import { db } from "@/server/db";
+import { db } from "./db";
 import { type User, type InsertUser, type Inquiry, type InsertInquiry, type Booking, type InsertBooking, users, inquiries, bookings } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
