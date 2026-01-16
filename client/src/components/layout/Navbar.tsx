@@ -44,31 +44,34 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/">
-          <a className={cn("text-xl md:text-2xl font-serif font-medium tracking-widest uppercase cursor-pointer transition-colors duration-300", textColorClass)}>
-            Lumière <span className="text-xs md:text-sm block md:inline font-sans font-light tracking-[0.3em] opacity-80 mt-1 md:mt-0 md:ml-2">Beach Resort</span>
-          </a>
+        <Link 
+          href="/"
+          className={cn("text-xl md:text-2xl font-serif font-medium tracking-widest uppercase cursor-pointer transition-colors duration-300", textColorClass)}
+        >
+          Lumière <span className="text-xs md:text-sm block md:inline font-sans font-light tracking-[0.3em] opacity-80 mt-1 md:mt-0 md:ml-2">Beach Resort</span>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href}>
-              <a
-                className={cn(
-                  "text-[10px] lg:text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-300",
-                  textColorClass,
-                  hoverColorClass,
-                  location === link.href && (isHome && !scrolled ? "border-b border-white pb-1" : "border-b border-primary pb-1")
-                )}
-              >
-                {link.name}
-              </a>
+            <Link 
+              key={link.name} 
+              href={link.href}
+              className={cn(
+                "text-[10px] lg:text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-300",
+                textColorClass,
+                hoverColorClass,
+                location === link.href && (isHome && !scrolled ? "border-b border-white pb-1" : "border-b border-primary pb-1")
+              )}
+            >
+              {link.name}
             </Link>
           ))}
-          <button className={cn("px-6 lg:px-8 py-3 rounded-none uppercase text-[10px] font-bold tracking-[0.2em] transition-all duration-300", buttonClass)}>
-            Book Now
-          </button>
+          <Link href="/rooms">
+            <button className={cn("px-6 lg:px-8 py-3 rounded-none uppercase text-[10px] font-bold tracking-[0.2em] transition-all duration-300", buttonClass)}>
+              Book Now
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -91,18 +94,20 @@ export default function Navbar() {
           >
              <div className="flex flex-col items-center gap-8">
               {navLinks.map((link) => (
-                <Link key={link.name} href={link.href}>
-                  <a
-                    className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </a>
+                <Link 
+                  key={link.name} 
+                  href={link.href}
+                  className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
                 </Link>
               ))}
-              <button className="bg-primary text-white w-full py-4 rounded-none uppercase text-sm font-bold tracking-widest mt-8">
-                Book a Stay
-              </button>
+              <Link href="/rooms" onClick={() => setIsOpen(false)}>
+                <button className="bg-primary text-white w-full py-4 rounded-none uppercase text-sm font-bold tracking-widest mt-8">
+                  Book a Stay
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}

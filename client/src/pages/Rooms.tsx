@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { rooms } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
 import BookingDialog from "@/components/BookingDialog";
@@ -70,9 +71,11 @@ export default function Rooms() {
 
                 <div className="flex gap-4">
                   <BookingDialog roomType={room.name} price={room.price} />
-                  <Button variant="outline" className="flex-1 border-border text-foreground hover:bg-secondary rounded-none uppercase tracking-widest text-xs font-bold py-6">
-                    View Details
-                  </Button>
+                  <Link href={`/rooms/${room.id}`} className="flex-1">
+                    <Button variant="outline" className="w-full border-border text-foreground hover:bg-secondary rounded-none uppercase tracking-widest text-xs font-bold py-6">
+                      View Details
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

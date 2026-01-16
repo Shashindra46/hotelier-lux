@@ -16,6 +16,7 @@ import Boutique from "@/pages/Boutique";
 import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
 import Rooftop from "@/pages/Rooftop";
+import RoomDetails from "@/pages/RoomDetails";
 
 // Layout wrapper to conditionally hide Navbar/Footer for Admin
 function Layout({ children }: { children: React.ReactNode }) {
@@ -71,6 +72,18 @@ function Router() {
           <Navbar />
           <main className="flex-grow">
              <Rooms />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+          <Chatbot />
+        </div>
+      </Route>
+
+      <Route path="/rooms/:id">
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+             <RoomDetails />
           </main>
           <Footer />
           <WhatsAppButton />
