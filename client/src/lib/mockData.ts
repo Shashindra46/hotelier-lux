@@ -71,10 +71,10 @@ export const menu = {
 export const events = [
   {
     id: 1,
-    title: "Surfing Lessons",
+    title: "Surfing at Kabalana Beach",
     date: "Daily, 7:00 AM & 4:00 PM",
-    description: "Learn to surf with professional instructors at Kabalana Beach, known for its perfect waves.",
-    image: "surfing_kabalana_beach" 
+    description: "Kabalana is world-famous for its incredible surf breaks. Whether you are a beginner or an expert, we offer guided surfing lessons and premium board rentals for our guests.",
+    image: "surfer_riding_tropical_wave" 
   },
   {
     id: 2,

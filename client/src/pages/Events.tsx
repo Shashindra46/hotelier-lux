@@ -5,11 +5,12 @@ import poolImage from "@assets/generated_images/surfing_kabalana_beach.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import whaleImage from "@assets/generated_images/majestic_blue_whale_fluke_high_quality.png";
 import turtleImage from "@assets/generated_images/baby_sea_turtles_on_sand.png";
+import surfingImage from "@assets/generated_images/surfer_riding_tropical_wave.png";
 
 export default function Events() {
   // Map images to IDs to handle the mapping properly
   const imageMap: Record<number, string> = {
-    1: poolImage,
+    1: surfingImage,
     2: diningImage,
     3: whaleImage,
     4: turtleImage
