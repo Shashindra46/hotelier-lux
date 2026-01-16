@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { events } from "@/lib/mockData";
 import { Calendar, Clock } from "lucide-react";
+import ExperienceBookingDialog from "@/components/ExperienceBookingDialog";
 import poolImage from "@assets/generated_images/surfing_kabalana_beach.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import whaleImage from "@assets/generated_images/majestic_blue_whale_fluke_high_quality.png";
@@ -63,10 +64,11 @@ export default function Events() {
                 <p className="text-muted-foreground leading-relaxed text-lg">
                   {event.description}
                 </p>
-                
-                <button className="text-primary hover:text-[#d4af37] border-b border-primary hover:border-[#d4af37] pb-1 uppercase text-xs font-bold tracking-widest transition-colors">
-                  Reserve Experience
-                </button>
+
+                <div className="flex items-center gap-6">
+                  <span className="text-2xl font-serif text-primary">${event.price}<span className="text-sm text-muted-foreground font-sans">/person</span></span>
+                  <ExperienceBookingDialog experience={event} />
+                </div>
               </div>
             </motion.div>
           ))}

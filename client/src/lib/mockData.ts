@@ -73,28 +73,32 @@ export const events = [
     id: 1,
     title: "Surfing at Kabalana Beach",
     date: "Daily, 7:00 AM & 4:00 PM",
-    description: "Kabalana is world-famous for its incredible surf breaks. Whether you are a beginner or an expert, we offer guided surfing lessons and premium board rentals for our guests.",
+    description: "Kabalana is world-famous for its incredible surf breaks. Whether you're a beginner catching your first wave or an expert seeking thrills, we provide high-quality surfboard facilities for all skill levels. Our experienced instructors offer personalized lessons, and premium board rentals are included for all guests.",
+    price: 85,
     image: "surfer_riding_tropical_wave" 
   },
   {
     id: 2,
     title: "Sunset Beach BBQ",
     date: "Saturdays, 6:00 PM",
-    description: "Fresh seafood BBQ on the beach with live acoustic music and bonfires.",
+    description: "Join us for an unforgettable beachfront dining experience featuring a variety of specialized local fish caught fresh daily by our partner fishermen. Savor grilled lobster, jumbo prawns, and the day's catch while enjoying live acoustic music and bonfires under the stars.",
+    price: 120,
     image: "sunset_beach_bar"
   },
   {
     id: 3,
     title: "Whale Watching Expedition",
     date: "Wednesdays, 6:00 AM",
-    description: "Boat trip to see Blue Whales and Dolphins off the coast of Mirissa.",
+    description: "Embark on a majestic journey to witness Blue Whales and Dolphins in their natural habitat. We provide complimentary transport to Mirissa Harbor, where you'll board our own private luxury ship equipped with comfortable seating, refreshments, and expert marine guides for an exclusive oceanic adventure.",
+    price: 150,
     image: "majestic_blue_whale_fluke_high_quality"
   },
   {
     id: 4,
     title: "Turtle Hatchery Visit",
     date: "Mondays, 10:00 AM",
-    description: "Visit the local conservation center and help release baby turtles into the ocean.",
+    description: "Visit the local conservation center and experience a truly magical moment as you personally release baby turtles into the ocean. Learn about sea turtle conservation efforts in Sri Lanka and witness these gentle creatures begin their incredible journey to the sea.",
+    price: 45,
     image: "baby_sea_turtles_on_sand"
   }
 ];
