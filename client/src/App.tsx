@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Chatbot from "@/components/Chatbot";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import Home from "@/pages/Home";
 import Rooms from "@/pages/Rooms";
 import Dining from "@/pages/Dining";
@@ -60,6 +61,7 @@ function Router() {
              <Home />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>
@@ -71,6 +73,7 @@ function Router() {
              <Rooms />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>
@@ -82,6 +85,7 @@ function Router() {
              <Dining />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>
@@ -93,6 +97,7 @@ function Router() {
              <Rooftop />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>
@@ -104,6 +109,7 @@ function Router() {
              <Events />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>
@@ -115,6 +121,7 @@ function Router() {
              <Boutique />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>
@@ -126,6 +133,7 @@ function Router() {
              <Contact />
           </main>
           <Footer />
+          <WhatsAppButton />
           <Chatbot />
         </div>
       </Route>

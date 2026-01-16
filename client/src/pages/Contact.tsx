@@ -1,11 +1,42 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { reviews } from "@/lib/mockData";
-import { Star, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Star, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setLoading(false);
+      toast({
+        title: "Message Sent",
+        description: "Thank you for contacting us. We will get back to you shortly.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 1500);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="pt-24 min-h-screen bg-background text-foreground pb-20">
       <div className="container mx-auto px-6">
@@ -54,18 +85,63 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Map Placeholder */}
+          {/* Contact Form */}
           <motion.div
              initial={{ opacity: 0, x: 20 }}
              animate={{ opacity: 1, x: 0 }}
-             className="bg-card border border-border h-[400px] relative overflow-hidden flex items-center justify-center bg-secondary"
+             className="bg-card border border-border p-8 shadow-lg"
           >
-            <div className="absolute inset-0 bg-secondary/50" />
-            <div className="z-10 text-center">
-               <MapPin size={48} className="mx-auto text-primary mb-4" />
-               <p className="text-muted-foreground uppercase tracking-widest text-sm font-bold">Google Maps Integration</p>
-               <p className="text-xs text-muted-foreground mt-2">(Interactive map would be embedded here)</p>
-            </div>
+            <h3 className="text-2xl font-serif mb-6">Send us a Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Input 
+                  name="name"
+                  placeholder="Your Name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="bg-background border-border"
+                />
+              </div>
+              <div className="space-y-2">
+                <Input 
+                  name="email"
+                  type="email"
+                  placeholder="Email Address" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="bg-background border-border"
+                />
+              </div>
+              <div className="space-y-2">
+                <Input 
+                  name="subject"
+                  placeholder="Subject" 
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="bg-background border-border"
+                />
+              </div>
+              <div className="space-y-2">
+                <Textarea 
+                  name="message"
+                  placeholder="How can we help you?" 
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="min-h-[120px] bg-background border-border"
+                />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-none uppercase tracking-widest text-xs py-6"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send Message"}
+              </Button>
+            </form>
           </motion.div>
         </div>
 
