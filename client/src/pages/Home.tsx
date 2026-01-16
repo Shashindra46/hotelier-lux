@@ -1,142 +1,124 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Star, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import heroImage from "@assets/generated_images/luxury_hotel_lobby.png";
-import roomImage from "@assets/generated_images/luxury_ocean_view_suite.png";
-import diningImage from "@assets/generated_images/fine_dining_restaurant.png";
+import heroImage from "@assets/generated_images/bright_luxury_hotel_exterior.png";
+import roomImage from "@assets/generated_images/bright_luxury_room.png";
+import diningImage from "@assets/generated_images/bright_fine_dining.png";
+import experienceImage from "@assets/generated_images/luxury_spa_experience.png";
 
 export default function Home() {
   const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
         <div 
-          className="absolute inset-0 bg-cover bg-center z-0 scale-105 animate-subtle-zoom"
+          className="absolute inset-0 bg-cover bg-center z-0 animate-subtle-zoom"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        {/* Subtle overlay, lighter than before to keep it "bright" but readable */}
+        <div className="absolute inset-0 bg-black/10 z-10" />
         
         <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-sm md:text-base tracking-[0.3em] uppercase mb-4"
-          >
-            Welcome to Lumière
-          </motion.h2>
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-8 leading-tight"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium mb-12 drop-shadow-lg tracking-tight"
           >
-            Redefining <br /> <span className="text-primary italic">Luxury</span>
+            Lumière
           </motion.h1>
+          
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+            className="bg-white/90 backdrop-blur-sm p-8 md:p-12 max-w-xl mx-auto shadow-2xl"
           >
-            <Link href="/rooms">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-white hover:text-black rounded-none px-8 py-6 text-sm tracking-widest uppercase transition-all duration-300">
-                Explore Suites
+            <h2 className="text-foreground text-2xl font-serif mb-6 italic">Ideally situated in the heart of the city</h2>
+             <Link href="/rooms">
+              <Button className="bg-primary text-white hover:bg-primary/90 rounded-none px-10 py-6 text-xs tracking-[0.2em] uppercase transition-all duration-300 w-full md:w-auto">
+                Book Your Stay
               </Button>
             </Link>
           </motion.div>
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white flex flex-col items-center gap-2"
-        >
-          <span className="text-[10px] tracking-widest uppercase opacity-70">Scroll to Explore</span>
-          <div className="w-[1px] h-12 bg-white/30" />
-        </motion.div>
       </section>
 
-      {/* About Preview */}
-      <section className="py-24 bg-background text-foreground">
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      {/* Experience Section - 3 Columns */}
+      <section className="py-0 relative -mt-20 z-30">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+             {[
+               { title: "Rooms & Suites", img: roomImage, link: "/rooms", subtitle: "Refined Comfort" },
+               { title: "Dining", img: diningImage, link: "/dining", subtitle: "Culinary Excellence" },
+               { title: "Experiences", img: experienceImage, link: "/events", subtitle: "Wellness & Leisure" }
+             ].map((item, i) => (
+               <motion.div
+                 key={i}
+                 initial={{ opacity: 0, y: 40 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: i * 0.2, duration: 0.8 }}
+                 className="group relative h-[500px] overflow-hidden cursor-pointer shadow-lg"
+               >
+                 <Link href={item.link}>
+                   <div className="w-full h-full relative">
+                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10" />
+                     <img 
+                       src={item.img} 
+                       alt={item.title} 
+                       className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110" 
+                     />
+                     <div className="absolute bottom-10 left-0 right-0 text-center z-20 text-white">
+                        <p className="text-xs uppercase tracking-[0.2em] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">{item.subtitle}</p>
+                        <h3 className="text-3xl font-serif tracking-wide group-hover:-translate-y-2 transition-transform duration-500">{item.title}</h3>
+                     </div>
+                   </div>
+                 </Link>
+               </motion.div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-32 bg-background text-foreground text-center">
+        <div className="container mx-auto px-6 max-w-4xl">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <h3 className="text-primary text-sm tracking-widest uppercase font-bold">About Us</h3>
-            <h2 className="text-4xl md:text-5xl font-serif">A Sanctuary in the <br/> Heart of the City</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Nestled in the most prestigious district, Lumière offers an escape from the ordinary. 
-              Our architecture blends modern elegance with timeless sophistication, creating an atmosphere 
-              where every moment is a celebration of refined living.
+            <div className="w-[1px] h-16 bg-primary mx-auto mb-8" />
+            <h3 className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-bold">Our Heritage</h3>
+            <h2 className="text-4xl md:text-5xl font-serif leading-tight">
+              A Legacy of <span className="text-primary italic">Timeless Hospitality</span>
+            </h2>
+            <p className="text-muted-foreground leading-loose text-lg font-light">
+              For over a century, Lumière has stood as a beacon of elegance and refinement. 
+              Our commitment to providing an authentic and luxurious experience is rooted in 
+              the belief that true hospitality is an art form. From the moment you arrive, 
+              you are enveloped in a world where every detail is curated to inspire and delight.
             </p>
-            <div className="pt-4">
+            <div className="pt-8">
               <Link href="/contact">
-                <a className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors uppercase tracking-widest text-xs font-bold border-b border-primary pb-1">
-                  Read Our Story <ArrowRight size={14} />
+                <a className="inline-flex items-center gap-3 text-foreground hover:text-primary transition-colors uppercase tracking-[0.2em] text-[10px] font-bold border-b border-gray-300 pb-2 hover:border-primary">
+                  Discover More <ArrowRight size={14} />
                 </a>
               </Link>
             </div>
           </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <img src={roomImage} alt="Luxury Interior" className="w-full h-[500px] object-cover" />
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary z-[-1]" />
-          </motion.div>
         </div>
       </section>
 
-      {/* Featured Services */}
-      <section className="py-24 bg-secondary text-secondary-foreground">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16 space-y-4">
-             <h3 className="text-primary text-sm tracking-widest uppercase font-bold">Experience</h3>
-             <h2 className="text-4xl font-serif">Unparalleled Service</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: "Fine Dining", img: diningImage, desc: "Culinary masterpieces by world-renowned chefs." },
-              { title: "Wellness Spa", img: roomImage, desc: "Rejuvenate your senses in our tranquil sanctuary." }, // reusing image for now
-              { title: "Exclusive Events", img: heroImage, desc: "Curated experiences for the discerning guest." }
-            ].map((item, i) => (
-              <motion.div 
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { delay: i * 0.2, duration: 0.6 } }
-                }}
-                className="group cursor-pointer"
-              >
-                <div className="overflow-hidden mb-6 h-80 relative">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500 z-10" />
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-                </div>
-                <h3 className="text-2xl font-serif mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

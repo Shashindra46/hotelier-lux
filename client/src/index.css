@@ -32,46 +32,46 @@
   --font-sans: 'Montserrat', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
   
-  --radius: 0.25rem;
+  --radius: 0rem;
 }
 
-/* LUXURY DARK THEME - GOLD & CHARCOAL */
+/* SHANGRI-LA STYLE: LIGHT, AIRY, SOPHISTICATED */
 :root {
-  --background: 220 20% 10%; /* Very dark blue/charcoal */
-  --foreground: 40 20% 94%; /* Off-white/Cream */
+  --background: 0 0% 100%; /* Pure White */
+  --foreground: 220 10% 20%; /* Dark Charcoal Grey for text */
 
-  --card: 220 18% 13%;
-  --card-foreground: 40 20% 94%;
+  --card: 0 0% 98%; /* Very light grey */
+  --card-foreground: 220 10% 20%;
  
-  --popover: 220 18% 13%;
-  --popover-foreground: 40 20% 94%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 10% 20%;
  
-  --primary: 45 45% 50%; /* Gold/Bronze */
-  --primary-foreground: 220 20% 10%;
+  --primary: 45 30% 45%; /* Muted Elegant Gold */
+  --primary-foreground: 0 0% 100%;
  
-  --secondary: 220 15% 18%;
-  --secondary-foreground: 40 20% 94%;
+  --secondary: 40 20% 96%; /* Warm Off-white/Beige */
+  --secondary-foreground: 220 10% 20%;
  
-  --muted: 220 15% 20%;
-  --muted-foreground: 220 10% 70%;
+  --muted: 220 10% 95%;
+  --muted-foreground: 220 5% 50%;
  
-  --accent: 45 45% 50%;
-  --accent-foreground: 220 20% 10%;
+  --accent: 45 30% 45%;
+  --accent-foreground: 0 0% 100%;
  
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 40 20% 94%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
 
-  --border: 45 30% 25%; /* Subtle Gold Border */
-  --input: 220 15% 18%;
-  --ring: 45 45% 50%;
+  --border: 220 10% 90%;
+  --input: 220 10% 90%;
+  --ring: 45 30% 45%;
  
-  --radius: 0rem; /* Sharp corners for luxury feel */
+  --radius: 0rem;
 
-  --chart-1: 45 45% 50%;
-  --chart-2: 220 20% 40%;
-  --chart-3: 30 40% 40%;
-  --chart-4: 260 20% 40%;
-  --chart-5: 200 20% 40%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
 }
 
 @layer base {
@@ -82,6 +82,6 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-wide;
+    @apply font-serif tracking-tight text-foreground font-medium;
   }
 }
