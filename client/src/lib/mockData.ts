@@ -95,7 +95,7 @@ export const events = [
     title: "Turtle Hatchery Visit",
     date: "Mondays, 10:00 AM",
     description: "Visit the local conservation center and help release baby turtles into the ocean.",
-    image: "kabalana_beach_drone_shot"
+    image: "baby_sea_turtles_on_sand"
   }
 ];
 

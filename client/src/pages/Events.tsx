@@ -4,7 +4,7 @@ import { Calendar, Clock } from "lucide-react";
 import poolImage from "@assets/generated_images/surfing_kabalana_beach.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import whaleImage from "@assets/generated_images/majestic_blue_whale_fluke_high_quality.png";
-import turtleImage from "@assets/generated_images/kabalana_beach_drone_shot.png";
+import turtleImage from "@assets/generated_images/baby_sea_turtles_on_sand.png";
 
 export default function Events() {
   // Map images to IDs to handle the mapping properly
