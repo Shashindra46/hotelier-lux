@@ -53,7 +53,7 @@ export default function Events() {
                   {event.description}
                 </p>
                 
-                <button className="text-primary border-b border-primary pb-1 uppercase text-xs font-bold tracking-widest hover:text-white transition-colors">
+                <button className="text-primary hover:text-[#d4af37] border-b border-primary hover:border-[#d4af37] pb-1 uppercase text-xs font-bold tracking-widest transition-colors">
                   Reserve Experience
                 </button>
               </div>
