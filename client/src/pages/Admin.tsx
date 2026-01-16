@@ -1,13 +1,25 @@
 import { useState } from "react";
-import { Lock, Plus, Trash, Edit } from "lucide-react";
+import { Lock, Eye, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { rooms, menu, events } from "@/lib/mockData";
+import { useQuery } from "@tanstack/react-query";
+import type { Inquiry, Booking } from "@shared/schema";
 
-// Login Component
+async function fetchInquiries(): Promise<Inquiry[]> {
+  const response = await fetch("/api/inquiries");
+  if (!response.ok) throw new Error("Failed to fetch inquiries");
+  return response.json();
+}
+
+async function fetchBookings(): Promise<Booking[]> {
+  const response = await fetch("/api/bookings");
+  if (!response.ok) throw new Error("Failed to fetch bookings");
+  return response.json();
+}
+
 function AdminLogin({ onLogin }: { onLogin: () => void }) {
   const [password, setPassword] = useState("");
   const { toast } = useToast();
@@ -38,9 +50,16 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
                 className="pl-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                data-testid="input-admin-password"
               />
             </div>
-            <Button type="submit" className="w-full bg-primary text-primary-foreground">Login</Button>
+            <Button 
+              type="submit" 
+              className="w-full bg-primary text-primary-foreground"
+              data-testid="button-admin-login"
+            >
+              Login
+            </Button>
           </form>
         </CardContent>
       </Card>
@@ -48,13 +67,20 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
   );
 }
 
-// Dashboard Component
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
-  // Mock State for "Editing"
-  const [localRooms] = useState(rooms);
-  const [localMenu] = useState(menu);
+  const { data: inquiries = [], isLoading: loadingInquiries } = useQuery({
+    queryKey: ["inquiries"],
+    queryFn: fetchInquiries,
+    enabled: isAuthenticated,
+  });
+
+  const { data: bookings = [], isLoading: loadingBookings } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: fetchBookings,
+    enabled: isAuthenticated,
+  });
 
   if (!isAuthenticated) return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
 
@@ -66,91 +92,115 @@ export default function Admin() {
           <Button variant="outline" onClick={() => setIsAuthenticated(false)}>Logout</Button>
         </div>
 
-        <Tabs defaultValue="rooms" className="space-y-8">
+        <Tabs defaultValue="inquiries" className="space-y-8">
           <TabsList className="bg-secondary">
-            <TabsTrigger value="rooms">Rooms</TabsTrigger>
-            <TabsTrigger value="menu">Menu</TabsTrigger>
-            <TabsTrigger value="events">Events</TabsTrigger>
+            <TabsTrigger value="inquiries">Contact Inquiries</TabsTrigger>
+            <TabsTrigger value="bookings">Room Bookings</TabsTrigger>
           </TabsList>
 
-          {/* Rooms Management */}
-          <TabsContent value="rooms">
+          <TabsContent value="inquiries">
             <Card className="bg-card border-border">
               <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle>Room Management</CardTitle>
-                <Button size="sm" className="bg-primary text-primary-foreground"><Plus size={16} className="mr-2"/> Add Room</Button>
+                <CardTitle>Contact Inquiries</CardTitle>
+                <div className="text-sm text-muted-foreground">
+                  {inquiries.length} total
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {localRooms.map(room => (
-                    <div key={room.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
-                      <div>
-                        <h3 className="font-bold">{room.name}</h3>
-                        <p className="text-sm text-muted-foreground">{room.category} • ${room.price}</p>
-                      </div>
-                      <div className="flex gap-2">
-                        <Button size="icon" variant="ghost"><Edit size={16}/></Button>
-                        <Button size="icon" variant="ghost" className="text-destructive"><Trash size={16}/></Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Menu Management */}
-          <TabsContent value="menu">
-            <Card className="bg-card border-border">
-              <CardHeader>
-                <CardTitle>Restaurant Menu</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {Object.entries(localMenu).map(([category, items]) => (
-                    <div key={category} className="space-y-4">
-                      <h3 className="uppercase font-bold text-primary tracking-widest">{category}</h3>
-                      {items.map((item, i) => (
-                        <div key={i} className="p-3 border border-border rounded bg-secondary/20">
-                           <div className="flex justify-between font-bold text-sm">
-                             <span>{item.name}</span>
-                             <span>${item.price}</span>
-                           </div>
-                           <p className="text-xs text-muted-foreground mt-1 truncate">{item.description}</p>
+                {loadingInquiries ? (
+                  <p className="text-center text-muted-foreground py-8">Loading...</p>
+                ) : inquiries.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-8">No inquiries yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {inquiries.map(inquiry => (
+                      <div 
+                        key={inquiry.id} 
+                        className="p-6 border border-border rounded-lg bg-secondary/20"
+                        data-testid={`inquiry-${inquiry.id}`}
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <h3 className="font-bold text-lg" data-testid="text-inquiry-name">{inquiry.name}</h3>
+                            <p className="text-sm text-muted-foreground" data-testid="text-inquiry-email">{inquiry.email}</p>
+                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(inquiry.createdAt).toLocaleDateString()}
+                          </span>
                         </div>
-                      ))}
-                      <Button variant="outline" size="sm" className="w-full">Add Item</Button>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          
-          {/* Events Management */}
-          <TabsContent value="events">
-             <Card className="bg-card border-border">
-               <CardHeader className="flex flex-row items-center justify-between">
-                 <CardTitle>Upcoming Events</CardTitle>
-                 <Button size="sm" className="bg-primary text-primary-foreground"><Plus size={16} className="mr-2"/> Add Event</Button>
-               </CardHeader>
-               <CardContent>
-                 <div className="space-y-4">
-                    {events.map(event => (
-                      <div key={event.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
-                        <div>
-                          <h3 className="font-bold">{event.title}</h3>
-                          <p className="text-sm text-muted-foreground">{event.date}</p>
-                        </div>
-                         <div className="flex gap-2">
-                          <Button size="icon" variant="ghost"><Edit size={16}/></Button>
-                          <Button size="icon" variant="ghost" className="text-destructive"><Trash size={16}/></Button>
+                        <div className="space-y-2">
+                          <p className="text-sm font-semibold text-primary">{inquiry.subject}</p>
+                          <p className="text-sm text-muted-foreground">{inquiry.message}</p>
                         </div>
                       </div>
                     ))}
-                 </div>
-               </CardContent>
-             </Card>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="bookings">
+            <Card className="bg-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle>Room Bookings</CardTitle>
+                <div className="text-sm text-muted-foreground">
+                  {bookings.length} total
+                </div>
+              </CardHeader>
+              <CardContent>
+                {loadingBookings ? (
+                  <p className="text-center text-muted-foreground py-8">Loading...</p>
+                ) : bookings.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-8">No bookings yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {bookings.map(booking => (
+                      <div 
+                        key={booking.id} 
+                        className="p-6 border border-border rounded-lg bg-secondary/20"
+                        data-testid={`booking-${booking.id}`}
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <h3 className="font-bold text-lg" data-testid="text-booking-name">{booking.name}</h3>
+                            <p className="text-sm text-muted-foreground" data-testid="text-booking-email">{booking.email}</p>
+                            <p className="text-sm text-muted-foreground" data-testid="text-booking-phone">{booking.phone}</p>
+                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(booking.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <span className="text-muted-foreground">Room:</span>
+                            <span className="ml-2 font-semibold">{booking.roomType}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Guests:</span>
+                            <span className="ml-2 font-semibold">{booking.guests}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Check-in:</span>
+                            <span className="ml-2 font-semibold">{booking.checkIn}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Check-out:</span>
+                            <span className="ml-2 font-semibold">{booking.checkOut}</span>
+                          </div>
+                        </div>
+                        {booking.specialRequests && (
+                          <div className="mt-3 pt-3 border-t border-border">
+                            <p className="text-xs text-muted-foreground mb-1">Special Requests:</p>
+                            <p className="text-sm">{booking.specialRequests}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </TabsContent>
 
         </Tabs>
