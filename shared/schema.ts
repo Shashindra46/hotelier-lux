@@ -93,3 +93,20 @@ export const insertActivityBookingSchema = createInsertSchema(activityBookings).
 
 export type InsertActivityBooking = z.infer<typeof insertActivityBookingSchema>;
 export type ActivityBooking = typeof activityBookings.$inferSelect;
+
+export const boutiqueInquiries = pgTable("boutique_inquiries", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  product: text("product").notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertBoutiqueInquirySchema = createInsertSchema(boutiqueInquiries).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertBoutiqueInquiry = z.infer<typeof insertBoutiqueInquirySchema>;
+export type BoutiqueInquiry = typeof boutiqueInquiries.$inferSelect;

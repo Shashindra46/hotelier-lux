@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { type User, type InsertUser, type Inquiry, type InsertInquiry, type Booking, type InsertBooking, type SessionBooking, type InsertSessionBooking, type ActivityBooking, type InsertActivityBooking, users, inquiries, bookings, sessionBookings, activityBookings } from "@shared/schema";
+import { type User, type InsertUser, type Inquiry, type InsertInquiry, type Booking, type InsertBooking, type SessionBooking, type InsertSessionBooking, type ActivityBooking, type InsertActivityBooking, type BoutiqueInquiry, type InsertBoutiqueInquiry, users, inquiries, bookings, sessionBookings, activityBookings, boutiqueInquiries } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 export interface IStorage {
@@ -18,6 +18,9 @@ export interface IStorage {
   
   createActivityBooking(activityBooking: InsertActivityBooking): Promise<ActivityBooking>;
   getAllActivityBookings(): Promise<ActivityBooking[]>;
+  
+  createBoutiqueInquiry(boutiqueInquiry: InsertBoutiqueInquiry): Promise<BoutiqueInquiry>;
+  getAllBoutiqueInquiries(): Promise<BoutiqueInquiry[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -70,6 +73,15 @@ export class DatabaseStorage implements IStorage {
 
   async getAllActivityBookings(): Promise<ActivityBooking[]> {
     return await db.select().from(activityBookings).orderBy(activityBookings.createdAt);
+  }
+
+  async createBoutiqueInquiry(boutiqueInquiry: InsertBoutiqueInquiry): Promise<BoutiqueInquiry> {
+    const [newBoutiqueInquiry] = await db.insert(boutiqueInquiries).values(boutiqueInquiry).returning();
+    return newBoutiqueInquiry;
+  }
+
+  async getAllBoutiqueInquiries(): Promise<BoutiqueInquiry[]> {
+    return await db.select().from(boutiqueInquiries).orderBy(boutiqueInquiries.createdAt);
   }
 }
 

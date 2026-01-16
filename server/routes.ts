@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertInquirySchema, insertBookingSchema, insertSessionBookingSchema, insertActivityBookingSchema } from "@shared/schema";
+import { insertInquirySchema, insertBookingSchema, insertSessionBookingSchema, insertActivityBookingSchema, insertBoutiqueInquirySchema } from "@shared/schema";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -89,6 +89,27 @@ export async function registerRoutes(
       res.json(activityBookings);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch activity bookings" });
+    }
+  });
+
+  // Boutique inquiry submission
+  app.post("/api/boutique-inquiries", async (req, res) => {
+    try {
+      const validatedData = insertBoutiqueInquirySchema.parse(req.body);
+      const boutiqueInquiry = await storage.createBoutiqueInquiry(validatedData);
+      res.status(201).json(boutiqueInquiry);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid boutique inquiry data" });
+    }
+  });
+
+  // Get all boutique inquiries (for admin)
+  app.get("/api/boutique-inquiries", async (req, res) => {
+    try {
+      const boutiqueInquiries = await storage.getAllBoutiqueInquiries();
+      res.json(boutiqueInquiries);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch boutique inquiries" });
     }
   });
 

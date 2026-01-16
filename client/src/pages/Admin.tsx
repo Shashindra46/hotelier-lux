@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import type { Inquiry, Booking, SessionBooking, ActivityBooking } from "@shared/schema";
+import type { Inquiry, Booking, SessionBooking, ActivityBooking, BoutiqueInquiry } from "@shared/schema";
 
 async function fetchInquiries(): Promise<Inquiry[]> {
   const response = await fetch("/api/inquiries");
@@ -29,6 +29,12 @@ async function fetchSessionBookings(): Promise<SessionBooking[]> {
 async function fetchActivityBookings(): Promise<ActivityBooking[]> {
   const response = await fetch("/api/activity-bookings");
   if (!response.ok) throw new Error("Failed to fetch activity bookings");
+  return response.json();
+}
+
+async function fetchBoutiqueInquiries(): Promise<BoutiqueInquiry[]> {
+  const response = await fetch("/api/boutique-inquiries");
+  if (!response.ok) throw new Error("Failed to fetch boutique inquiries");
   return response.json();
 }
 
@@ -106,6 +112,12 @@ export default function Admin() {
     enabled: isAuthenticated,
   });
 
+  const { data: boutiqueInquiries = [], isLoading: loadingBoutiqueInquiries } = useQuery({
+    queryKey: ["boutiqueInquiries"],
+    queryFn: fetchBoutiqueInquiries,
+    enabled: isAuthenticated,
+  });
+
   if (!isAuthenticated) return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
 
   return (
@@ -118,10 +130,11 @@ export default function Admin() {
 
         <Tabs defaultValue="inquiries" className="space-y-8">
           <TabsList className="bg-secondary">
-            <TabsTrigger value="inquiries">Contact Inquiries</TabsTrigger>
-            <TabsTrigger value="bookings">Room Bookings</TabsTrigger>
-            <TabsTrigger value="sessions">Yoga Sessions</TabsTrigger>
+            <TabsTrigger value="inquiries">Contact</TabsTrigger>
+            <TabsTrigger value="bookings">Rooms</TabsTrigger>
+            <TabsTrigger value="sessions">Yoga</TabsTrigger>
             <TabsTrigger value="activities">DJ Nights</TabsTrigger>
+            <TabsTrigger value="boutique">Boutique</TabsTrigger>
           </TabsList>
 
           <TabsContent value="inquiries">
@@ -344,6 +357,52 @@ export default function Admin() {
                             <p className="text-sm">{activity.specialRequests}</p>
                           </div>
                         )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="boutique">
+            <Card className="bg-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle>Boutique Inquiries</CardTitle>
+                <div className="text-sm text-muted-foreground">
+                  {boutiqueInquiries.length} total
+                </div>
+              </CardHeader>
+              <CardContent>
+                {loadingBoutiqueInquiries ? (
+                  <p className="text-center text-muted-foreground py-8">Loading...</p>
+                ) : boutiqueInquiries.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-8">No boutique inquiries yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {boutiqueInquiries.map(inquiry => (
+                      <div 
+                        key={inquiry.id} 
+                        className="p-6 border border-border rounded-lg bg-secondary/20"
+                        data-testid={`boutique-${inquiry.id}`}
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <h3 className="font-bold text-lg">{inquiry.name}</h3>
+                            <p className="text-sm text-muted-foreground">{inquiry.email}</p>
+                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(inquiry.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="mb-3">
+                          <span className="text-muted-foreground text-sm">Product:</span>
+                          <span className="ml-2 font-semibold text-primary">{inquiry.product}</span>
+                        </div>
+                        <div className="pt-3 border-t border-border">
+                          <p className="text-xs text-muted-foreground mb-1">Message:</p>
+                          <p className="text-sm">{inquiry.message}</p>
+                        </div>
                       </div>
                     ))}
                   </div>

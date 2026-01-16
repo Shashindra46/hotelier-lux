@@ -1,9 +1,62 @@
 import { motion } from "framer-motion";
-import { ShoppingBag, Shirt, Watch, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import linenImage from "@assets/generated_images/linen_clothing_collection_on_rack.png";
-import accessoriesImage from "@assets/generated_images/handmade_local_accessories_display.png";
-import beachwearImage from "@assets/generated_images/tropical_beachwear_mannequin.png";
+import { ShoppingBag, Shirt, Watch } from "lucide-react";
+import BoutiqueInquiryDialog from "@/components/BoutiqueInquiryDialog";
+
+import linenShirtImage from "@assets/generated_images/men's_linen_shirt_product.png";
+import linenDressImage from "@assets/generated_images/women's_linen_dress_product.png";
+import linenTrousersImage from "@assets/generated_images/linen_trousers_product.png";
+
+import shellNecklaceImage from "@assets/generated_images/shell_necklace_product.png";
+import wovenBagImage from "@assets/generated_images/woven_beach_bag_product.png";
+import braceletImage from "@assets/generated_images/handmade_bracelet_product.png";
+
+import swimsuitImage from "@assets/generated_images/designer_swimsuit_product.png";
+import sarongImage from "@assets/generated_images/silk_sarong_product.png";
+import beachHatImage from "@assets/generated_images/beach_hat_product.png";
+
+const linenProducts = [
+  { name: "Men's Linen Shirt", price: 45, image: linenShirtImage },
+  { name: "Women's Linen Dress", price: 65, image: linenDressImage },
+  { name: "Linen Trousers", price: 55, image: linenTrousersImage },
+];
+
+const artisanProducts = [
+  { name: "Shell Necklace", price: 25, image: shellNecklaceImage },
+  { name: "Woven Beach Bag", price: 40, image: wovenBagImage },
+  { name: "Handmade Bracelet", price: 15, image: braceletImage },
+];
+
+const beachwearProducts = [
+  { name: "Designer Swimsuit", price: 50, image: swimsuitImage },
+  { name: "Premium Silk Sarong", price: 35, image: sarongImage },
+  { name: "Beach Hat", price: 30, image: beachHatImage },
+];
+
+function ProductCard({ product }: { product: { name: string; price: number; image: string } }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-card border border-border group"
+    >
+      <div className="aspect-square overflow-hidden">
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      <div className="p-6 space-y-4">
+        <div className="flex justify-between items-start">
+          <h3 className="font-serif text-lg">{product.name}</h3>
+          <span className="text-xl font-serif text-primary">${product.price}</span>
+        </div>
+        <BoutiqueInquiryDialog productName={product.name} productPrice={product.price} />
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Boutique() {
   return (
@@ -23,140 +76,80 @@ export default function Boutique() {
         </motion.div>
 
         {/* Linen Collection Section */}
-        <section className="mb-32">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="order-2 md:order-1 space-y-8"
-            >
-              <div className="flex items-center gap-3 text-primary uppercase tracking-widest text-sm font-bold">
-                <Shirt size={18} />
-                <span>Linen Collection</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-                Effortless <br/><span className="text-primary italic">Elegance</span>
-              </h2>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                Discover our exclusive range of breathable linen wear, designed for the tropical climate. 
-                From flowing dresses to tailored shirts, each piece embodies the relaxed sophistication of coastal living.
-              </p>
-              
-              <div className="pt-4">
-                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
-                    View Collection
-                 </Button>
-              </div>
-            </motion.div>
+        <section className="mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="flex items-center justify-center gap-3 text-primary uppercase tracking-widest text-sm font-bold mb-4">
+              <Shirt size={18} />
+              <span>Linen Collection</span>
+            </div>
+            <h2 className="text-4xl font-serif mb-4">Effortless <span className="text-primary italic">Elegance</span></h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Discover our exclusive range of breathable linen wear, designed for the tropical climate. 
+              Each piece embodies the relaxed sophistication of coastal living.
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="order-1 md:order-2 relative"
-            >
-              <div className="absolute -inset-4 border border-primary/20 -z-10 translate-x-4 translate-y-4" />
-              <img 
-                src={linenImage} 
-                alt="Linen Collection" 
-                className="w-full h-[500px] object-cover shadow-2xl"
-              />
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {linenProducts.map((product) => (
+              <ProductCard key={product.name} product={product} />
+            ))}
           </div>
         </section>
 
-        {/* Handmade Accessories Section */}
-        <section className="mb-32">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="absolute -inset-4 border border-primary/20 -z-10 -translate-x-4 translate-y-4" />
-              <img 
-                src={accessoriesImage} 
-                alt="Handmade Accessories" 
-                className="w-full h-[500px] object-cover shadow-2xl"
-              />
-            </motion.div>
+        {/* Artisanal Craftsmanship Section */}
+        <section className="mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="flex items-center justify-center gap-3 text-primary uppercase tracking-widest text-sm font-bold mb-4">
+              <Watch size={18} />
+              <span>Artisanal Craftsmanship</span>
+            </div>
+            <h2 className="text-4xl font-serif mb-4">Handmade <span className="text-primary italic">Treasures</span></h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Support local artisans with our curated selection of handmade jewelry, woven bags, and unique keepsakes. 
+              Each item tells a story of Sri Lankan heritage and skilled craftsmanship.
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div className="flex items-center gap-3 text-primary uppercase tracking-widest text-sm font-bold">
-                <Watch size={18} />
-                <span>Handmade Accessories</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-                Artisanal <br/><span className="text-primary italic">Craftsmanship</span>
-              </h2>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                Support local artisans with our curated selection of handmade jewelry, woven bags, and unique keepsakes. 
-                Each item tells a story of Sri Lankan heritage and skilled craftsmanship.
-              </p>
-              
-              <div className="pt-4">
-                 <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
-                    Shop Accessories
-                 </Button>
-              </div>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {artisanProducts.map((product) => (
+              <ProductCard key={product.name} product={product} />
+            ))}
           </div>
         </section>
 
         {/* Tropical Beachwear Section */}
         <section>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="order-2 md:order-1 space-y-8"
-            >
-              <div className="flex items-center gap-3 text-primary uppercase tracking-widest text-sm font-bold">
-                <ShoppingBag size={18} />
-                <span>Tropical Beachwear</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-serif leading-tight">
-                Island <br/><span className="text-primary italic">Style</span>
-              </h2>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                Embrace the sun with our vibrant collection of swimwear, sarongs, and beach essentials. 
-                Bold prints and comfortable fabrics ensure you look and feel your best by the water.
-              </p>
-              
-              <div className="pt-4">
-                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
-                    Browse Beachwear
-                 </Button>
-              </div>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="flex items-center justify-center gap-3 text-primary uppercase tracking-widest text-sm font-bold mb-4">
+              <ShoppingBag size={18} />
+              <span>Tropical Beachwear</span>
+            </div>
+            <h2 className="text-4xl font-serif mb-4">Island <span className="text-primary italic">Style</span></h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Embrace the sun with our vibrant collection of swimwear, sarongs, and beach essentials. 
+              Bold prints and comfortable fabrics ensure you look and feel your best by the water.
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="order-1 md:order-2 relative"
-            >
-              <div className="absolute -inset-4 border border-primary/20 -z-10 translate-x-4 translate-y-4" />
-              <img 
-                src={beachwearImage} 
-                alt="Tropical Beachwear" 
-                className="w-full h-[500px] object-cover shadow-2xl"
-              />
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {beachwearProducts.map((product) => (
+              <ProductCard key={product.name} product={product} />
+            ))}
           </div>
         </section>
 
