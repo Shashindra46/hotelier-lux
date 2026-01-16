@@ -20,6 +20,7 @@ export default function Footer() {
           <ul className="space-y-4 text-sm text-muted-foreground">
             <li><Link href="/rooms"><a className="hover:text-primary transition-colors">Villas & Suites</a></Link></li>
             <li><Link href="/dining"><a className="hover:text-primary transition-colors">Dining & Beach Club</a></Link></li>
+            <li><Link href="/rooftop"><a className="hover:text-primary transition-colors">Rooftop Wellness</a></Link></li>
             <li><Link href="/events"><a className="hover:text-primary transition-colors">Experiences</a></Link></li>
             <li><Link href="/contact"><a className="hover:text-primary transition-colors">Contact Us</a></Link></li>
           </ul>

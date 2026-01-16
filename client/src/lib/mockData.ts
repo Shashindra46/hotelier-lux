@@ -56,6 +56,11 @@ export const menu = {
     { name: "Sunset Arrack Sour", price: 18, description: "Ceylon Arrack, lime, ginger, egg white" },
     { name: "Coconut Mojito", price: 16, description: "White rum, fresh coconut water, mint, lime" },
     { name: "Spicy Tuna Tacos", price: 22, description: "Fresh tuna tartare, spicy mayo, crispy wonton shell" }
+  ],
+  rooftop_cafe: [
+    { name: "Acai Berry Bowl", price: 18, description: "Amazonian acai, granola, bee pollen, tropical fruits" },
+    { name: "Cold Brew Coconut", price: 12, description: "Single origin cold brew coffee, fresh king coconut water" },
+    { name: "Avocado & Hummus Tartine", price: 20, description: "Sourdough, beetroot hummus, avocado rose, dukkah" }
   ]
 };
 

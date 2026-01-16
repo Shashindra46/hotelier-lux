@@ -13,6 +13,7 @@ import Dining from "@/pages/Dining";
 import Events from "@/pages/Events";
 import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
+import Rooftop from "@/pages/Rooftop";
 
 // Layout wrapper to conditionally hide Navbar/Footer for Admin
 function Layout({ children }: { children: React.ReactNode }) {
@@ -78,6 +79,17 @@ function Router() {
           <Navbar />
           <main className="flex-grow">
              <Dining />
+          </main>
+          <Footer />
+          <Chatbot />
+        </div>
+      </Route>
+
+      <Route path="/rooftop">
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+             <Rooftop />
           </main>
           <Footer />
           <Chatbot />

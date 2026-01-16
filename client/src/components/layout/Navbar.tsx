@@ -19,8 +19,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Villas & Suites", href: "/rooms" },
-    { name: "Dining & Club", href: "/dining" },
+    { name: "Villas", href: "/rooms" },
+    { name: "Dining", href: "/dining" },
+    { name: "Rooftop", href: "/rooftop" },
     { name: "Experiences", href: "/events" },
     { name: "Contact", href: "/contact" },
   ];
@@ -49,7 +50,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 lg:gap-10">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href}>
               <a
