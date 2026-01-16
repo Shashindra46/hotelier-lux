@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { Coffee, Sun, Wind, ArrowRight } from "lucide-react";
+import { Coffee, Sun, Wind, ArrowRight, Music, Calendar, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import cafeImage from "@assets/generated_images/rooftop_skyline_cafe.png";
 import yogaImage from "@assets/generated_images/rooftop_sunrise_yoga.png";
+import djImage from "@assets/generated_images/rooftop_dj_sunset_party.png";
 
 export default function Rooftop() {
   return (
@@ -73,7 +74,7 @@ export default function Rooftop() {
         </section>
 
         {/* Yoga Sanctuary Section */}
-        <section>
+        <section className="mb-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -134,7 +135,60 @@ export default function Rooftop() {
           </div>
         </section>
 
-      </div>
-    </div>
-  );
-}
+        {/* Sunset DJ Sessions Section */}
+        <section>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-2 md:order-1 space-y-8"
+            >
+              <div className="flex items-center gap-3 text-primary uppercase tracking-widest text-sm font-bold">
+                <Music size={18} />
+                <span>Nightlife</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-serif leading-tight">
+                Sunset <br/><span className="text-primary italic">DJ Sessions</span>
+              </h2>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Join us every Saturday evening on our rooftop for vibrant DJ sets, stunning sunset views, 
+                and signature cocktails. Experience the best of Kabalana's nightlife in a sophisticated, 
+                open-air setting.
+              </p>
+              
+              <div className="flex gap-8 text-muted-foreground border-t border-b border-border py-4">
+                <div className="flex items-center gap-3">
+                  <Calendar size={20} className="text-primary"/>
+                  <span className="text-sm font-bold tracking-widest uppercase">Saturdays</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock size={20} className="text-primary"/>
+                  <span className="text-sm font-bold tracking-widest uppercase">7:00 PM Onwards</span>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
+                    Reserve Your Spot
+                 </Button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-1 md:order-2 relative"
+            >
+              <div className="absolute -inset-4 border border-primary/20 -z-10 translate-x-4 translate-y-4" />
+              <img 
+                src={djImage} 
+                alt="Sunset DJ Party" 
+                className="w-full h-[500px] object-cover shadow-2xl"
+              />
+            </motion.div>
+          </div>
+        </section>
