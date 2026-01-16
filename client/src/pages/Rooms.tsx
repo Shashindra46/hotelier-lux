@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { rooms } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
 import { Wifi, Monitor, Coffee, Wind } from "lucide-react";
-import roomImage from "@assets/generated_images/luxury_ocean_view_suite.png";
+import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 
 export default function Rooms() {
   return (
@@ -13,9 +13,9 @@ export default function Rooms() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16 space-y-4"
         >
-          <h1 className="text-5xl md:text-6xl font-serif">Accommodations</h1>
+          <h1 className="text-5xl md:text-6xl font-serif">Villas & Suites</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Discover our collection of refined suites, designed to provide the ultimate in comfort and style.
+            Discover our collection of beachfront sanctuaries, featuring private plunge pools and direct ocean access.
           </p>
         </motion.div>
 
@@ -31,7 +31,7 @@ export default function Rooms() {
             >
               <div className="h-64 md:h-96 overflow-hidden relative">
                 <img 
-                  src={roomImage} // Using single asset for prototype, realistically would vary
+                  src={roomImage} // Using single asset for prototype
                   alt={room.name} 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
@@ -54,8 +54,7 @@ export default function Rooms() {
                   </div>
                   
                   <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
-                    Experience luxury in our {room.size} suite featuring premium furnishings and breathtaking views.
-                    Perfect for those who seek excellence in every detail.
+                    Relax in our {room.size} sanctuary. {room.amenities[0]} and {room.amenities[1]} await you.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">

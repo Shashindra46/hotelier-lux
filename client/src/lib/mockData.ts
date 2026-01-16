@@ -3,101 +3,113 @@ import { Calendar, CheckCircle, MapPin, Music, Utensils, Wifi, Star } from "luci
 export const rooms = [
   {
     id: 1,
-    name: "Royal Ocean Suite",
+    name: "Royal Ocean Villa",
     category: "Luxury",
-    floor: "Top Floor (25th)",
-    price: 1200,
+    floor: "Beachfront",
+    price: 1500,
     view: "Panoramic Ocean View",
-    size: "1200 sq ft",
-    amenities: ["Private Jacuzzi", "Butler Service", "King Size Bed", "Lounge Area"],
-    image: "luxury_ocean_view_suite" // Maps to generated image
+    size: "1500 sq ft",
+    amenities: ["Private Plunge Pool", "Direct Beach Access", "Butler Service", "Outdoor Rain Shower"],
+    image: "beachfront_villa_plunge_pool"
   },
   {
     id: 2,
-    name: "Prestige Garden Suite",
+    name: "Ocean View Suite",
     category: "Deluxe",
-    floor: "Floors 15-20",
-    price: 800,
-    view: "Botanical Garden View",
-    size: "850 sq ft",
-    amenities: ["Balcony", "Rain Shower", "King Size Bed", "Mini Bar"],
-    image: "luxury_ocean_view_suite" // Reusing for now, normally would generate unique
+    floor: "Floors 2-3",
+    price: 950,
+    view: "Indian Ocean View",
+    size: "900 sq ft",
+    amenities: ["Ocean View Balcony", "Jacuzzi", "King Size Bed", "Mini Bar"],
+    image: "luxury_ocean_view_suite" 
   },
   {
     id: 3,
-    name: "Executive Room",
+    name: "Garden Cabana",
     category: "Standard",
-    floor: "Floors 5-14",
-    price: 450,
-    view: "City Skyline",
-    size: "500 sq ft",
-    amenities: ["Work Desk", "High-speed Wifi", "Queen Bed", "Smart TV"],
-    image: "luxury_ocean_view_suite" // Reusing
+    floor: "Ground Floor",
+    price: 550,
+    view: "Tropical Garden",
+    size: "600 sq ft",
+    amenities: ["Private Terrace", "Hammock", "Queen Bed", "Wifi"],
+    image: "luxury_ocean_view_suite" 
   }
 ];
 
 export const menu = {
   breakfast: [
-    { name: "Truffle Eggs Benedict", price: 35, description: "Poached eggs, black truffle hollandaise, brioche" },
-    { name: "Acai Royal Bowl", price: 28, description: "Organic berries, manuka honey, house granola" },
-    { name: "Smoked Salmon Platter", price: 42, description: "Scottish salmon, capers, cream cheese, bagel" }
+    { name: "Sri Lankan Hopper Feast", price: 25, description: "Egg hoppers, string hoppers, dhal, coconut sambol" },
+    { name: "Tropical Fruit Platter", price: 20, description: "Fresh mango, papaya, pineapple, passion fruit, curd & treacle" },
+    { name: "Avocado Toast", price: 28, description: "Poached eggs, sourdough, chili flakes, lime" }
   ],
   lunch: [
-    { name: "Lobster Bisque", price: 45, description: "Cognac cream, chives, brioche croutons" },
-    { name: "Wagyu Burger", price: 55, description: "A5 Wagyu patty, gruyere, caramelized onions" },
-    { name: "Mediterranean Salad", price: 32, description: "Feta, olives, heirloom tomatoes, balsamic glaze" }
+    { name: "Fresh Catch of the Day", price: 45, description: "Grilled yellowfin tuna, garlic butter, salad" },
+    { name: "Prawn Curry", price: 35, description: "Traditional Sri Lankan spices, coconut milk, basmati rice" },
+    { name: "Lobster Roll", price: 42, description: "Brioche bun, celery, lemon mayo, fries" }
   ],
   dinner: [
-    { name: "Pan-Seared Scallops", price: 65, description: "Cauliflower purée, caviar, lemon butter" },
-    { name: "Filet Mignon", price: 95, description: "8oz prime beef, truffle mash, red wine reduction" },
-    { name: "Miso Glazed Black Cod", price: 85, description: "Sustainable cod, sweet miso, bok choy" }
+    { name: "Seafood Platter for Two", price: 120, description: "Lobster, jumbo prawns, calamari, crab, lemon butter sauce" },
+    { name: "Black Pork Curry", price: 38, description: "Slow-cooked pork, roasted spices, goraka" },
+    { name: "Grilled Barracuda", price: 45, description: "Lemon garlic marinade, mashed potato, greens" }
+  ],
+  beach_club: [
+    { name: "Sunset Arrack Sour", price: 18, description: "Ceylon Arrack, lime, ginger, egg white" },
+    { name: "Coconut Mojito", price: 16, description: "White rum, fresh coconut water, mint, lime" },
+    { name: "Spicy Tuna Tacos", price: 22, description: "Fresh tuna tartare, spicy mayo, crispy wonton shell" }
   ]
 };
 
 export const events = [
   {
     id: 1,
-    title: "Jazz Night Under the Stars",
-    date: "Every Friday, 8:00 PM",
-    description: "Live jazz band performance at the Sky Lounge.",
-    image: "fine_dining_restaurant" 
+    title: "Surfing Lessons",
+    date: "Daily, 7:00 AM & 4:00 PM",
+    description: "Learn to surf with professional instructors at Kabalana Beach, known for its perfect waves.",
+    image: "surfing_kabalana_beach" 
   },
   {
     id: 2,
-    title: "Sunset Pool Party",
-    date: "Saturdays, 4:00 PM",
-    description: "DJ sets, cocktails, and sunset views at the Infinity Pool.",
-    image: "infinity_pool_sunset"
+    title: "Sunset Beach BBQ",
+    date: "Saturdays, 6:00 PM",
+    description: "Fresh seafood BBQ on the beach with live acoustic music and bonfires.",
+    image: "sunset_beach_bar"
   },
   {
     id: 3,
-    title: "Chef's Table Experience",
-    date: "Monthly, 1st Sunday",
-    description: "Exclusive 7-course tasting menu with wine pairing.",
-    image: "fine_dining_restaurant"
+    title: "Whale Watching Expedition",
+    date: "Wednesdays, 6:00 AM",
+    description: "Boat trip to see Blue Whales and Dolphins off the coast of Mirissa.",
+    image: "kabalana_beach_drone_shot"
+  },
+  {
+    id: 4,
+    title: "Turtle Hatchery Visit",
+    date: "Mondays, 10:00 AM",
+    description: "Visit the local conservation center and help release baby turtles into the ocean.",
+    image: "kabalana_beach_drone_shot"
   }
 ];
 
 export const reviews = [
   {
     id: 1,
-    user: "Eleanor Vance",
+    user: "Sophie Miller",
     rating: 5,
-    comment: "An absolute dream. The attention to detail is unmatched.",
-    date: "Oct 2025"
+    comment: "The most beautiful beach resort I've ever stayed at. The plunge pool was heavenly.",
+    date: "Jan 2026"
   },
   {
     id: 2,
-    user: "Arthur Blackwood",
+    user: "James Chen",
     rating: 5,
-    comment: "The dining experience was exquisite. Highly recommend the Wagyu.",
-    date: "Nov 2025"
+    comment: "Surfing at Kabalana is world-class. The hotel staff organized everything perfectly.",
+    date: "Dec 2025"
   },
   {
     id: 3,
-    user: "Sarah Jenkins",
+    user: "Emma Thompson",
     rating: 4,
-    comment: "Beautiful views, though room service was slightly slow during peak hours.",
-    date: "Dec 2025"
+    comment: "Stunning sunsets from the beach bar. A truly magical tropical getaway.",
+    date: "Nov 2025"
   }
 ];

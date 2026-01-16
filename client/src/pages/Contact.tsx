@@ -18,7 +18,7 @@ export default function Contact() {
           >
             <h1 className="text-5xl font-serif mb-2">Get in Touch</h1>
             <p className="text-muted-foreground mb-8">
-              We are at your service. For reservations, special requests, or inquiries, please contact us.
+              Ready for your tropical escape? Contact us for reservations, airport transfers, or surf packages.
             </p>
 
             <div className="space-y-6">
@@ -28,7 +28,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-serif text-lg mb-1">Location</h4>
-                  <p className="text-muted-foreground text-sm">123 Luxury Ave, Beverly Hills, CA 90210</p>
+                  <p className="text-muted-foreground text-sm">Kabalana Beach, Ahangama, Sri Lanka</p>
                 </div>
               </div>
               
@@ -38,7 +38,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-serif text-lg mb-1">Phone</h4>
-                  <p className="text-muted-foreground text-sm">+1 (555) 123-4567</p>
+                  <p className="text-muted-foreground text-sm">+94 77 123 4567</p>
                 </div>
               </div>
 
@@ -48,7 +48,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-serif text-lg mb-1">Email</h4>
-                  <p className="text-muted-foreground text-sm">concierge@lumierehotel.com</p>
+                  <p className="text-muted-foreground text-sm">reservations@lumiere-kabalana.com</p>
                 </div>
               </div>
             </div>

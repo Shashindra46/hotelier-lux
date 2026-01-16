@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { events } from "@/lib/mockData";
 import { Calendar, Clock } from "lucide-react";
-import poolImage from "@assets/generated_images/infinity_pool_sunset.png";
-import diningImage from "@assets/generated_images/fine_dining_restaurant.png";
+import poolImage from "@assets/generated_images/surfing_kabalana_beach.png";
+import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 
 export default function Events() {
   return (
@@ -13,11 +13,10 @@ export default function Events() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-serif mb-6">Events & Happenings</h1>
+          <h1 className="text-5xl md:text-6xl font-serif mb-6">Experiences & Adventures</h1>
           <div className="w-20 h-1 bg-primary mb-6" />
           <p className="text-muted-foreground max-w-2xl text-lg">
-            Curated experiences to make your stay unforgettable. From intimate jazz nights 
-            to lively sunset sessions.
+            Immerse yourself in the Ahangama lifestyle. From world-class surfing to whale watching expeditions.
           </p>
         </motion.div>
 
@@ -33,7 +32,7 @@ export default function Events() {
             >
               <div className="w-full md:w-1/2 overflow-hidden shadow-2xl">
                 <img 
-                  src={event.id === 2 ? poolImage : diningImage} 
+                  src={event.id === 1 ? poolImage : diningImage} // Logic is a bit loose but works for prototype
                   alt={event.title} 
                   className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
                 />
@@ -55,7 +54,7 @@ export default function Events() {
                 </p>
                 
                 <button className="text-primary border-b border-primary pb-1 uppercase text-xs font-bold tracking-widest hover:text-white transition-colors">
-                  Reserve Spot
+                  Reserve Experience
                 </button>
               </div>
             </motion.div>

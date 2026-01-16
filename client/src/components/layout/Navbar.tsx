@@ -19,18 +19,13 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Rooms & Suites", href: "/rooms" },
-    { name: "Dining", href: "/dining" },
-    { name: "Events", href: "/events" },
+    { name: "Villas & Suites", href: "/rooms" },
+    { name: "Dining & Club", href: "/dining" },
+    { name: "Experiences", href: "/events" },
     { name: "Contact", href: "/contact" },
   ];
 
   const isHome = location === "/";
-
-  // Text color logic:
-  // On Home: White when transparent (top), Dark when scrolled (white bg)
-  // On Other Pages: Always Dark (since we likely won't have the dark hero image everywhere, or we can keep the same logic if every page has a hero)
-  // For now, let's assume specific logic for Home vs Others.
   
   const textColorClass = isHome && !scrolled ? "text-white" : "text-foreground";
   const hoverColorClass = isHome && !scrolled ? "hover:text-white/80" : "hover:text-primary";
@@ -48,18 +43,18 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <a className={cn("text-2xl font-serif font-medium tracking-widest uppercase cursor-pointer transition-colors duration-300", textColorClass)}>
-            Lumière
+          <a className={cn("text-xl md:text-2xl font-serif font-medium tracking-widest uppercase cursor-pointer transition-colors duration-300", textColorClass)}>
+            Lumière <span className="text-xs md:text-sm block md:inline font-sans font-light tracking-[0.3em] opacity-80 mt-1 md:mt-0 md:ml-2">Beach Resort</span>
           </a>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8 lg:gap-10">
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href}>
               <a
                 className={cn(
-                  "text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-300",
+                  "text-[10px] lg:text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-300",
                   textColorClass,
                   hoverColorClass,
                   location === link.href && (isHome && !scrolled ? "border-b border-white pb-1" : "border-b border-primary pb-1")
@@ -69,7 +64,7 @@ export default function Navbar() {
               </a>
             </Link>
           ))}
-          <button className={cn("px-8 py-3 rounded-none uppercase text-[10px] font-bold tracking-[0.2em] transition-all duration-300", buttonClass)}>
+          <button className={cn("px-6 lg:px-8 py-3 rounded-none uppercase text-[10px] font-bold tracking-[0.2em] transition-all duration-300", buttonClass)}>
             Book Now
           </button>
         </div>
