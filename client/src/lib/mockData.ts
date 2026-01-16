@@ -38,29 +38,33 @@ export const rooms = [
 
 export const menu = {
   breakfast: [
-    { name: "Sri Lankan Hopper Feast", price: 25, description: "Egg hoppers, string hoppers, dhal, coconut sambol" },
-    { name: "Tropical Fruit Platter", price: 20, description: "Fresh mango, papaya, pineapple, passion fruit, curd & treacle" },
-    { name: "Avocado Toast", price: 28, description: "Poached eggs, sourdough, chili flakes, lime" }
+    { name: "Pink Dragon Bowl", price: 15, description: "Dragon fruit, banana, coconut milk, granola" },
+    { name: "Mango Magic Bowl", price: 15, description: "Fresh mango, passion fruit, yogurt, chia seeds" },
+    { name: "Avocado on Sourdough", price: 18, description: "Poached eggs, chili flakes, feta, lime" },
+    { name: "Eggs Benedict", price: 22, description: "Smoked salmon or bacon, hollandaise, english muffin" },
+    { name: "Fluffy Pancakes", price: 16, description: "Maple syrup, fresh berries, whipped cream" },
+    { name: "Barista Coffee", price: 5, description: "Cappuccino, Latte, Flat White (Oat/Almond milk available)" }
   ],
   lunch: [
-    { name: "Fresh Catch of the Day", price: 45, description: "Grilled yellowfin tuna, garlic butter, salad" },
-    { name: "Prawn Curry", price: 35, description: "Traditional Sri Lankan spices, coconut milk, basmati rice" },
-    { name: "Lobster Roll", price: 42, description: "Brioche bun, celery, lemon mayo, fries" }
+    { name: "Sri Lankan Rice & Curry", price: 25, description: "Choice of Chicken, Fish, or Prawns with 5 veg curries" },
+    { name: "Tuna Poke Bowl", price: 24, description: "Fresh yellowfin tuna, edamame, avocado, sushi rice" },
+    { name: "Gourmet Beef Burger", price: 22, description: "Australian beef patty, cheddar, caramelized onions, fries" },
+    { name: "Fish Tacos", price: 18, description: "Grilled mahi-mahi, slaw, spicy mayo, lime" },
+    { name: "Quinoa Salad Bowl", price: 18, description: "Roasted pumpkin, feta, pomegranate, balsamic dressing" }
   ],
   dinner: [
-    { name: "Seafood Platter for Two", price: 120, description: "Lobster, jumbo prawns, calamari, crab, lemon butter sauce" },
-    { name: "Black Pork Curry", price: 38, description: "Slow-cooked pork, roasted spices, goraka" },
-    { name: "Grilled Barracuda", price: 45, description: "Lemon garlic marinade, mashed potato, greens" }
+    { name: "Hot Butter Cuttlefish", price: 18, description: "Crispy fried cuttlefish, chili butter, spring onions (Must Try!)", highlighted: true },
+    { name: "Sesame Seared Tuna", price: 28, description: "Wasabi mash, bok choy, soy ginger glaze" },
+    { name: "Garlic Butter Prawns", price: 32, description: "Jumbo prawns, lemon butter, parsley, crusty bread" },
+    { name: "Seafood Linguine", price: 26, description: "Prawns, calamari, clams, cherry tomatoes, white wine" },
+    { name: "Grilled Pork Chop", price: 28, description: "Creamy mashed potatoes, apple sauce, green beans" }
   ],
-  beach_club: [
-    { name: "Sunset Arrack Sour", price: 18, description: "Ceylon Arrack, lime, ginger, egg white" },
-    { name: "Coconut Mojito", price: 16, description: "White rum, fresh coconut water, mint, lime" },
-    { name: "Spicy Tuna Tacos", price: 22, description: "Fresh tuna tartare, spicy mayo, crispy wonton shell" }
-  ],
-  rooftop_cafe: [
-    { name: "Acai Berry Bowl", price: 18, description: "Amazonian acai, granola, bee pollen, tropical fruits" },
-    { name: "Cold Brew Coconut", price: 12, description: "Single origin cold brew coffee, fresh king coconut water" },
-    { name: "Avocado & Hummus Tartine", price: 20, description: "Sourdough, beetroot hummus, avocado rose, dukkah" }
+  drinks_desserts: [
+    { name: "Passionfruit Mojito", price: 12, description: "White rum, fresh passion fruit, mint, soda" },
+    { name: "Arrack Sour", price: 12, description: "Ceylon Arrack, lime, ginger, egg white" },
+    { name: "Chocolate Brownie", price: 10, description: "Warm brownie with vanilla ice cream" },
+    { name: "Coconut Panna Cotta", price: 10, description: "Passion fruit coulis, toasted coconut" },
+    { name: "King Coconut", price: 4, description: "Freshly chilled thambili" }
   ]
 };
 
