@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Lock, Eye, Calendar } from "lucide-react";
+import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import type { Inquiry, Booking } from "@shared/schema";
+import type { Inquiry, Booking, SessionBooking } from "@shared/schema";
 
 async function fetchInquiries(): Promise<Inquiry[]> {
   const response = await fetch("/api/inquiries");
@@ -17,6 +17,12 @@ async function fetchInquiries(): Promise<Inquiry[]> {
 async function fetchBookings(): Promise<Booking[]> {
   const response = await fetch("/api/bookings");
   if (!response.ok) throw new Error("Failed to fetch bookings");
+  return response.json();
+}
+
+async function fetchSessionBookings(): Promise<SessionBooking[]> {
+  const response = await fetch("/api/session-bookings");
+  if (!response.ok) throw new Error("Failed to fetch session bookings");
   return response.json();
 }
 
@@ -82,6 +88,12 @@ export default function Admin() {
     enabled: isAuthenticated,
   });
 
+  const { data: sessionBookings = [], isLoading: loadingSessionBookings } = useQuery({
+    queryKey: ["sessionBookings"],
+    queryFn: fetchSessionBookings,
+    enabled: isAuthenticated,
+  });
+
   if (!isAuthenticated) return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
 
   return (
@@ -96,6 +108,7 @@ export default function Admin() {
           <TabsList className="bg-secondary">
             <TabsTrigger value="inquiries">Contact Inquiries</TabsTrigger>
             <TabsTrigger value="bookings">Room Bookings</TabsTrigger>
+            <TabsTrigger value="sessions">Yoga Sessions</TabsTrigger>
           </TabsList>
 
           <TabsContent value="inquiries">
@@ -121,8 +134,8 @@ export default function Admin() {
                       >
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <h3 className="font-bold text-lg" data-testid="text-inquiry-name">{inquiry.name}</h3>
-                            <p className="text-sm text-muted-foreground" data-testid="text-inquiry-email">{inquiry.email}</p>
+                            <h3 className="font-bold text-lg">{inquiry.name}</h3>
+                            <p className="text-sm text-muted-foreground">{inquiry.email}</p>
                           </div>
                           <span className="text-xs text-muted-foreground">
                             {new Date(inquiry.createdAt).toLocaleDateString()}
@@ -163,9 +176,9 @@ export default function Admin() {
                       >
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <h3 className="font-bold text-lg" data-testid="text-booking-name">{booking.name}</h3>
-                            <p className="text-sm text-muted-foreground" data-testid="text-booking-email">{booking.email}</p>
-                            <p className="text-sm text-muted-foreground" data-testid="text-booking-phone">{booking.phone}</p>
+                            <h3 className="font-bold text-lg">{booking.name}</h3>
+                            <p className="text-sm text-muted-foreground">{booking.email}</p>
+                            <p className="text-sm text-muted-foreground">{booking.phone}</p>
                           </div>
                           <span className="text-xs text-muted-foreground">
                             {new Date(booking.createdAt).toLocaleDateString()}
@@ -195,6 +208,64 @@ export default function Admin() {
                             <p className="text-sm">{booking.specialRequests}</p>
                           </div>
                         )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="sessions">
+            <Card className="bg-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle>Yoga Session Bookings</CardTitle>
+                <div className="text-sm text-muted-foreground">
+                  {sessionBookings.length} total
+                </div>
+              </CardHeader>
+              <CardContent>
+                {loadingSessionBookings ? (
+                  <p className="text-center text-muted-foreground py-8">Loading...</p>
+                ) : sessionBookings.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-8">No session bookings yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {sessionBookings.map(session => (
+                      <div 
+                        key={session.id} 
+                        className="p-6 border border-border rounded-lg bg-secondary/20"
+                        data-testid={`session-${session.id}`}
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <h3 className="font-bold text-lg">{session.name}</h3>
+                            <p className="text-sm text-muted-foreground">{session.email}</p>
+                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(session.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <span className="text-muted-foreground">Session:</span>
+                            <span className="ml-2 font-semibold">{session.sessionType}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Date:</span>
+                            <span className="ml-2 font-semibold">{session.sessionDate}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Participants:</span>
+                            <span className="ml-2 font-semibold">{session.participants}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Est. Total:</span>
+                            <span className="ml-2 font-semibold text-primary">
+                              ${session.sessionType.includes("Private") ? 60 : 25 * session.participants}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>

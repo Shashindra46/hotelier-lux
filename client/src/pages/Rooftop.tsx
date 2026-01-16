@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Coffee, Sun, Wind, ArrowRight, Music, Calendar, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CafeMenuDialog from "@/components/CafeMenuDialog";
+import SessionBookingDialog from "@/components/SessionBookingDialog";
 import cafeImage from "@assets/generated_images/rooftop_skyline_cafe.png";
 import yogaImage from "@assets/generated_images/rooftop_sunrise_yoga.png";
 import djImage from "@assets/generated_images/rooftop_sunset_dj_party_scene.png";
@@ -126,9 +127,7 @@ export default function Rooftop() {
               </ul>
 
               <div className="pt-4">
-                 <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
-                    Book a Session
-                 </Button>
+                 <SessionBookingDialog />
               </div>
             </motion.div>
           </div>

@@ -54,3 +54,21 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
 
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
 export type Booking = typeof bookings.$inferSelect;
+
+export const sessionBookings = pgTable("session_bookings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  sessionType: text("session_type").notNull(),
+  sessionDate: text("session_date").notNull(),
+  participants: integer("participants").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertSessionBookingSchema = createInsertSchema(sessionBookings).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertSessionBooking = z.infer<typeof insertSessionBookingSchema>;
+export type SessionBooking = typeof sessionBookings.$inferSelect;

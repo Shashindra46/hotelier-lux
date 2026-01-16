@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertInquirySchema, insertBookingSchema } from "@shared/schema";
+import { insertInquirySchema, insertBookingSchema, insertSessionBookingSchema } from "@shared/schema";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -47,6 +47,27 @@ export async function registerRoutes(
       res.json(bookings);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch bookings" });
+    }
+  });
+
+  // Session booking submission
+  app.post("/api/session-bookings", async (req, res) => {
+    try {
+      const validatedData = insertSessionBookingSchema.parse(req.body);
+      const sessionBooking = await storage.createSessionBooking(validatedData);
+      res.status(201).json(sessionBooking);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid session booking data" });
+    }
+  });
+
+  // Get all session bookings (for admin)
+  app.get("/api/session-bookings", async (req, res) => {
+    try {
+      const sessionBookings = await storage.getAllSessionBookings();
+      res.json(sessionBookings);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch session bookings" });
     }
   });
 
