@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Coffee, Sun, Wind, ArrowRight, Music, Calendar, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CafeMenuDialog from "@/components/CafeMenuDialog";
 import cafeImage from "@assets/generated_images/rooftop_skyline_cafe.png";
 import yogaImage from "@assets/generated_images/rooftop_sunrise_yoga.png";
 import djImage from "@assets/generated_images/rooftop_sunset_dj_party_scene.png";
@@ -50,9 +51,7 @@ export default function Rooftop() {
               </p>
               
               <div className="pt-4">
-                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
-                    View Menu
-                 </Button>
+                 <CafeMenuDialog />
               </div>
             </motion.div>
 
