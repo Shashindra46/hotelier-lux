@@ -21,23 +21,23 @@ export default function Home() {
           className="absolute inset-0 bg-cover bg-center z-0 animate-subtle-zoom"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        {/* Lighter overlay for sunny beach feel */}
-        <div className="absolute inset-0 bg-black/10 z-10" />
+        {/* Lighter overlay for sunny beach feel - slightly increased opacity for text readability */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
         
         <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
           <motion.h2 
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
              transition={{ duration: 0.8, delay: 0.1 }}
-             className="text-sm md:text-base tracking-[0.4em] uppercase mb-4 font-bold drop-shadow-md"
+             className="text-xl md:text-3xl tracking-[0.5em] uppercase mb-8 font-bold text-[#d4af37] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
-            Kabalana • Ahangama
+            Kabalana | Ahangama
           </motion.h2>
           <motion.h1 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-9xl font-serif font-medium mb-12 drop-shadow-lg tracking-tight"
+            className="text-6xl md:text-8xl lg:text-[10rem] font-serif font-medium mb-16 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] tracking-wide"
           >
             Lumière
           </motion.h1>
