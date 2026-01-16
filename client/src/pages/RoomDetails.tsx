@@ -5,36 +5,45 @@ import { Button } from "@/components/ui/button";
 import BookingDialog from "@/components/BookingDialog";
 import { Wifi, Wind, Wine, User, Droplets, ArrowLeft, Check } from "lucide-react";
 
-import bedroomImage from "@assets/generated_images/villa_master_bedroom_interior.png";
-import bathroomImage from "@assets/generated_images/villa_bathroom_with_bathtub.png";
-import poolImage from "@assets/generated_images/villa_private_pool_terrace.png";
-import livingImage from "@assets/generated_images/villa_living_room_interior.png";
-
 import royalOceanVillaImage from "@assets/generated_images/royal_ocean_villa_beachfront.png";
+import royalVillaPool from "@assets/generated_images/royal_villa_infinity_pool.png";
+import royalVillaBalcony from "@assets/generated_images/royal_villa_ocean_balcony.png";
+import royalVillaBedroom from "@assets/generated_images/royal_villa_master_bedroom.png";
+import royalVillaShower from "@assets/generated_images/royal_villa_rain_shower.png";
+
 import azureSuiteImage from "@assets/generated_images/azure_suite_modern_coastal.png";
+import azureSuiteLiving from "@assets/generated_images/azure_suite_living_area.png";
+import azureSuiteBalcony from "@assets/generated_images/azure_suite_sea_balcony.png";
+import azureSuiteBathroom from "@assets/generated_images/azure_suite_luxury_bathroom.png";
+import azureSuiteDecor from "@assets/generated_images/azure_suite_interior_decor.png";
+
 import gardenSanctuaryImage from "@assets/generated_images/garden_sanctuary_tropical_luxury.png";
+import gardenBedView from "@assets/generated_images/garden_bed_tropical_view.png";
+import gardenSeating from "@assets/generated_images/garden_outdoor_seating.png";
+import gardenGreenery from "@assets/generated_images/garden_lush_greenery.png";
+import gardenBathroom from "@assets/generated_images/garden_tropical_bathroom.png";
 
 const roomGalleries: Record<number, { src: string; alt: string }[]> = {
   1: [
     { src: royalOceanVillaImage, alt: "Royal Ocean Villa Exterior" },
-    { src: poolImage, alt: "Private Infinity Pool" },
-    { src: bedroomImage, alt: "Master Bedroom" },
-    { src: bathroomImage, alt: "Luxury Bathroom" },
-    { src: livingImage, alt: "Living Area" },
+    { src: royalVillaPool, alt: "Private Infinity Pool" },
+    { src: royalVillaBalcony, alt: "Beachfront Balcony View" },
+    { src: royalVillaBedroom, alt: "Master Bedroom with Ocean View" },
+    { src: royalVillaShower, alt: "Outdoor Rain Shower" },
   ],
   2: [
     { src: azureSuiteImage, alt: "Azure Suite Interior" },
-    { src: bedroomImage, alt: "Suite Bedroom" },
-    { src: bathroomImage, alt: "Modern Bathroom" },
-    { src: livingImage, alt: "Suite Living Area" },
-    { src: poolImage, alt: "Ocean View Terrace" },
+    { src: azureSuiteLiving, alt: "Modern Teal Living Area" },
+    { src: azureSuiteBalcony, alt: "Sea-Facing Balcony" },
+    { src: azureSuiteBathroom, alt: "Luxury Bathroom" },
+    { src: azureSuiteDecor, alt: "Elegant Interior Decor" },
   ],
   3: [
     { src: gardenSanctuaryImage, alt: "Garden Sanctuary" },
-    { src: bedroomImage, alt: "Cozy Bedroom" },
-    { src: bathroomImage, alt: "Garden Bathroom" },
-    { src: livingImage, alt: "Living Space" },
-    { src: poolImage, alt: "Private Terrace" },
+    { src: gardenBedView, alt: "Tropical Garden View from Bed" },
+    { src: gardenSeating, alt: "Private Outdoor Seating" },
+    { src: gardenGreenery, alt: "Lush Surrounding Greenery" },
+    { src: gardenBathroom, alt: "Tropical Style Bathroom" },
   ],
 };
 
