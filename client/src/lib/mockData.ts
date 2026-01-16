@@ -88,7 +88,7 @@ export const events = [
     title: "Whale Watching Expedition",
     date: "Wednesdays, 6:00 AM",
     description: "Boat trip to see Blue Whales and Dolphins off the coast of Mirissa.",
-    image: "blue_whale_tail_fluke"
+    image: "majestic_blue_whale_fluke_high_quality"
   },
   {
     id: 4,

@@ -3,8 +3,18 @@ import { events } from "@/lib/mockData";
 import { Calendar, Clock } from "lucide-react";
 import poolImage from "@assets/generated_images/surfing_kabalana_beach.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
+import whaleImage from "@assets/generated_images/majestic_blue_whale_fluke_high_quality.png";
+import turtleImage from "@assets/generated_images/kabalana_beach_drone_shot.png";
 
 export default function Events() {
+  // Map images to IDs to handle the mapping properly
+  const imageMap: Record<number, string> = {
+    1: poolImage,
+    2: diningImage,
+    3: whaleImage,
+    4: turtleImage
+  };
+
   return (
     <div className="pt-32 min-h-screen bg-background text-foreground pb-20">
       <div className="container mx-auto px-6">
@@ -32,7 +42,7 @@ export default function Events() {
             >
               <div className="w-full md:w-1/2 overflow-hidden shadow-2xl">
                 <img 
-                  src={event.id === 1 ? poolImage : diningImage} // Logic is a bit loose but works for prototype
+                  src={imageMap[event.id] || poolImage} 
                   alt={event.title} 
                   className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
                 />
