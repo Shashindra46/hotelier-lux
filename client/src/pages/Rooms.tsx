@@ -4,7 +4,16 @@ import { rooms } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
 import BookingDialog from "@/components/BookingDialog";
 import { Wifi, Monitor, Coffee, Wind } from "lucide-react";
-import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
+
+import royalOceanVillaImage from "@assets/generated_images/royal_ocean_villa_beachfront.png";
+import azureSuiteImage from "@assets/generated_images/azure_suite_modern_coastal.png";
+import gardenSanctuaryImage from "@assets/generated_images/garden_sanctuary_tropical_luxury.png";
+
+const roomImages: Record<number, string> = {
+  1: royalOceanVillaImage,
+  2: azureSuiteImage,
+  3: gardenSanctuaryImage,
+};
 
 export default function Rooms() {
   return (
@@ -33,7 +42,7 @@ export default function Rooms() {
             >
               <div className="h-64 md:h-96 overflow-hidden relative">
                 <img 
-                  src={roomImage} // Using single asset for prototype
+                  src={roomImages[room.id]}
                   alt={room.name} 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />

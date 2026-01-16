@@ -9,15 +9,34 @@ import bedroomImage from "@assets/generated_images/villa_master_bedroom_interior
 import bathroomImage from "@assets/generated_images/villa_bathroom_with_bathtub.png";
 import poolImage from "@assets/generated_images/villa_private_pool_terrace.png";
 import livingImage from "@assets/generated_images/villa_living_room_interior.png";
-import heroImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 
-const galleryImages = [
-  { src: heroImage, alt: "Villa Exterior" },
-  { src: bedroomImage, alt: "Master Bedroom" },
-  { src: bathroomImage, alt: "Luxury Bathroom" },
-  { src: poolImage, alt: "Private Pool" },
-  { src: livingImage, alt: "Living Area" },
-];
+import royalOceanVillaImage from "@assets/generated_images/royal_ocean_villa_beachfront.png";
+import azureSuiteImage from "@assets/generated_images/azure_suite_modern_coastal.png";
+import gardenSanctuaryImage from "@assets/generated_images/garden_sanctuary_tropical_luxury.png";
+
+const roomGalleries: Record<number, { src: string; alt: string }[]> = {
+  1: [
+    { src: royalOceanVillaImage, alt: "Royal Ocean Villa Exterior" },
+    { src: poolImage, alt: "Private Infinity Pool" },
+    { src: bedroomImage, alt: "Master Bedroom" },
+    { src: bathroomImage, alt: "Luxury Bathroom" },
+    { src: livingImage, alt: "Living Area" },
+  ],
+  2: [
+    { src: azureSuiteImage, alt: "Azure Suite Interior" },
+    { src: bedroomImage, alt: "Suite Bedroom" },
+    { src: bathroomImage, alt: "Modern Bathroom" },
+    { src: livingImage, alt: "Suite Living Area" },
+    { src: poolImage, alt: "Ocean View Terrace" },
+  ],
+  3: [
+    { src: gardenSanctuaryImage, alt: "Garden Sanctuary" },
+    { src: bedroomImage, alt: "Cozy Bedroom" },
+    { src: bathroomImage, alt: "Garden Bathroom" },
+    { src: livingImage, alt: "Living Space" },
+    { src: poolImage, alt: "Private Terrace" },
+  ],
+};
 
 const amenityIcons: Record<string, typeof Wifi> = {
   "Wifi": Wifi,
@@ -98,12 +117,12 @@ export default function RoomDetails() {
         >
           <div className="col-span-2 row-span-2">
             <img 
-              src={galleryImages[0].src} 
-              alt={galleryImages[0].alt}
+              src={roomGalleries[room.id][0].src} 
+              alt={roomGalleries[room.id][0].alt}
               className="w-full h-full object-cover min-h-[300px] md:min-h-[500px]"
             />
           </div>
-          {galleryImages.slice(1).map((img, index) => (
+          {roomGalleries[room.id].slice(1).map((img: { src: string; alt: string }, index: number) => (
             <div key={index} className="aspect-square overflow-hidden">
               <img 
                 src={img.src} 
