@@ -3,7 +3,7 @@ import { Coffee, Sun, Wind, ArrowRight, Music, Calendar, Clock } from "lucide-re
 import { Button } from "@/components/ui/button";
 import cafeImage from "@assets/generated_images/rooftop_skyline_cafe.png";
 import yogaImage from "@assets/generated_images/rooftop_sunrise_yoga.png";
-import djImage from "@assets/generated_images/rooftop_dj_sunset_party.png";
+import djImage from "@assets/generated_images/rooftop_sunset_dj_party_scene.png";
 
 export default function Rooftop() {
   return (
