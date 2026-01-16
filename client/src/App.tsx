@@ -11,6 +11,7 @@ import Home from "@/pages/Home";
 import Rooms from "@/pages/Rooms";
 import Dining from "@/pages/Dining";
 import Events from "@/pages/Events";
+import Boutique from "@/pages/Boutique";
 import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
 import Rooftop from "@/pages/Rooftop";
@@ -101,6 +102,17 @@ function Router() {
           <Navbar />
           <main className="flex-grow">
              <Events />
+          </main>
+          <Footer />
+          <Chatbot />
+        </div>
+      </Route>
+
+      <Route path="/boutique">
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+             <Boutique />
           </main>
           <Footer />
           <Chatbot />

@@ -23,6 +23,7 @@ export default function Navbar() {
     { name: "Dining", href: "/dining" },
     { name: "Rooftop", href: "/rooftop" },
     { name: "Experiences", href: "/events" },
+    { name: "Boutique", href: "/boutique" },
     { name: "Contact", href: "/contact" },
   ];
 
