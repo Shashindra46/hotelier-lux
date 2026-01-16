@@ -74,7 +74,7 @@ export const events = [
     title: "Surfing at Kabalana Beach",
     date: "Daily, 7:00 AM & 4:00 PM",
     description: "Kabalana is world-famous for its incredible surf breaks. Whether you're a beginner catching your first wave or an expert seeking thrills, we provide high-quality surfboard facilities for all skill levels. Our experienced instructors offer personalized lessons, and premium board rentals are included for all guests.",
-    price: 85,
+    price: 20,
     image: "surfer_riding_tropical_wave" 
   },
   {
@@ -82,7 +82,7 @@ export const events = [
     title: "Sunset Beach BBQ",
     date: "Saturdays, 6:00 PM",
     description: "Join us for an unforgettable beachfront dining experience featuring a variety of specialized local fish caught fresh daily by our partner fishermen. Savor grilled lobster, jumbo prawns, and the day's catch while enjoying live acoustic music and bonfires under the stars.",
-    price: 120,
+    price: 30,
     image: "sunset_beach_bar"
   },
   {
