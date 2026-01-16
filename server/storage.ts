@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { type User, type InsertUser, type Inquiry, type InsertInquiry, type Booking, type InsertBooking, type SessionBooking, type InsertSessionBooking, users, inquiries, bookings, sessionBookings } from "@shared/schema";
+import { type User, type InsertUser, type Inquiry, type InsertInquiry, type Booking, type InsertBooking, type SessionBooking, type InsertSessionBooking, type ActivityBooking, type InsertActivityBooking, users, inquiries, bookings, sessionBookings, activityBookings } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 export interface IStorage {
@@ -15,6 +15,9 @@ export interface IStorage {
   
   createSessionBooking(sessionBooking: InsertSessionBooking): Promise<SessionBooking>;
   getAllSessionBookings(): Promise<SessionBooking[]>;
+  
+  createActivityBooking(activityBooking: InsertActivityBooking): Promise<ActivityBooking>;
+  getAllActivityBookings(): Promise<ActivityBooking[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -58,6 +61,15 @@ export class DatabaseStorage implements IStorage {
 
   async getAllSessionBookings(): Promise<SessionBooking[]> {
     return await db.select().from(sessionBookings).orderBy(sessionBookings.createdAt);
+  }
+
+  async createActivityBooking(activityBooking: InsertActivityBooking): Promise<ActivityBooking> {
+    const [newActivityBooking] = await db.insert(activityBookings).values(activityBooking).returning();
+    return newActivityBooking;
+  }
+
+  async getAllActivityBookings(): Promise<ActivityBooking[]> {
+    return await db.select().from(activityBookings).orderBy(activityBookings.createdAt);
   }
 }
 

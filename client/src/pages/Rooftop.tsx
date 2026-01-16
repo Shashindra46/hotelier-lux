@@ -3,6 +3,7 @@ import { Coffee, Sun, Wind, ArrowRight, Music, Calendar, Clock } from "lucide-re
 import { Button } from "@/components/ui/button";
 import CafeMenuDialog from "@/components/CafeMenuDialog";
 import SessionBookingDialog from "@/components/SessionBookingDialog";
+import DJReservationDialog from "@/components/DJReservationDialog";
 import cafeImage from "@assets/generated_images/rooftop_skyline_cafe.png";
 import yogaImage from "@assets/generated_images/rooftop_sunrise_yoga.png";
 import djImage from "@assets/generated_images/rooftop_sunset_dj_party_scene.png";
@@ -168,9 +169,7 @@ export default function Rooftop() {
               </div>
 
               <div className="pt-4">
-                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase transition-all">
-                    Reserve Your Spot
-                 </Button>
+                 <DJReservationDialog />
               </div>
             </motion.div>
 

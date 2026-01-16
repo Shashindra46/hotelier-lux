@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import type { Inquiry, Booking, SessionBooking } from "@shared/schema";
+import type { Inquiry, Booking, SessionBooking, ActivityBooking } from "@shared/schema";
 
 async function fetchInquiries(): Promise<Inquiry[]> {
   const response = await fetch("/api/inquiries");
@@ -23,6 +23,12 @@ async function fetchBookings(): Promise<Booking[]> {
 async function fetchSessionBookings(): Promise<SessionBooking[]> {
   const response = await fetch("/api/session-bookings");
   if (!response.ok) throw new Error("Failed to fetch session bookings");
+  return response.json();
+}
+
+async function fetchActivityBookings(): Promise<ActivityBooking[]> {
+  const response = await fetch("/api/activity-bookings");
+  if (!response.ok) throw new Error("Failed to fetch activity bookings");
   return response.json();
 }
 
@@ -94,6 +100,12 @@ export default function Admin() {
     enabled: isAuthenticated,
   });
 
+  const { data: activityBookings = [], isLoading: loadingActivityBookings } = useQuery({
+    queryKey: ["activityBookings"],
+    queryFn: fetchActivityBookings,
+    enabled: isAuthenticated,
+  });
+
   if (!isAuthenticated) return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
 
   return (
@@ -109,6 +121,7 @@ export default function Admin() {
             <TabsTrigger value="inquiries">Contact Inquiries</TabsTrigger>
             <TabsTrigger value="bookings">Room Bookings</TabsTrigger>
             <TabsTrigger value="sessions">Yoga Sessions</TabsTrigger>
+            <TabsTrigger value="activities">DJ Nights</TabsTrigger>
           </TabsList>
 
           <TabsContent value="inquiries">
@@ -266,6 +279,71 @@ export default function Admin() {
                             </span>
                           </div>
                         </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="activities">
+            <Card className="bg-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle>DJ Night Reservations</CardTitle>
+                <div className="text-sm text-muted-foreground">
+                  {activityBookings.length} total
+                </div>
+              </CardHeader>
+              <CardContent>
+                {loadingActivityBookings ? (
+                  <p className="text-center text-muted-foreground py-8">Loading...</p>
+                ) : activityBookings.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-8">No DJ night reservations yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {activityBookings.map(activity => (
+                      <div 
+                        key={activity.id} 
+                        className="p-6 border border-border rounded-lg bg-secondary/20"
+                        data-testid={`activity-${activity.id}`}
+                      >
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <h3 className="font-bold text-lg">{activity.name}</h3>
+                            <p className="text-sm text-muted-foreground">{activity.email}</p>
+                            <p className="text-sm text-muted-foreground">{activity.phone}</p>
+                          </div>
+                          <span className="text-xs text-muted-foreground">
+                            {new Date(activity.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <span className="text-muted-foreground">Table:</span>
+                            <span className="ml-2 font-semibold">{activity.tableOption}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Event Date:</span>
+                            <span className="ml-2 font-semibold">{activity.eventDate}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Guests:</span>
+                            <span className="ml-2 font-semibold">{activity.guests}</span>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Min. Spend:</span>
+                            <span className="ml-2 font-semibold text-primary">
+                              ${activity.guests * 50}
+                            </span>
+                          </div>
+                        </div>
+                        {activity.specialRequests && (
+                          <div className="mt-3 pt-3 border-t border-border">
+                            <p className="text-xs text-muted-foreground mb-1">Special Requests:</p>
+                            <p className="text-sm">{activity.specialRequests}</p>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>

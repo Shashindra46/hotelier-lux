@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertInquirySchema, insertBookingSchema, insertSessionBookingSchema } from "@shared/schema";
+import { insertInquirySchema, insertBookingSchema, insertSessionBookingSchema, insertActivityBookingSchema } from "@shared/schema";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -68,6 +68,27 @@ export async function registerRoutes(
       res.json(sessionBookings);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch session bookings" });
+    }
+  });
+
+  // Activity booking submission (DJ nights, etc.)
+  app.post("/api/activity-bookings", async (req, res) => {
+    try {
+      const validatedData = insertActivityBookingSchema.parse(req.body);
+      const activityBooking = await storage.createActivityBooking(validatedData);
+      res.status(201).json(activityBooking);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid activity booking data" });
+    }
+  });
+
+  // Get all activity bookings (for admin)
+  app.get("/api/activity-bookings", async (req, res) => {
+    try {
+      const activityBookings = await storage.getAllActivityBookings();
+      res.json(activityBookings);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch activity bookings" });
     }
   });
 
