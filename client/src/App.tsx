@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Chatbot from "@/components/Chatbot";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home";
 import Rooms from "@/pages/Rooms";
 import Dining from "@/pages/Dining";
@@ -51,8 +52,10 @@ const ChatbotWrapper = () => {
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/admin" component={Admin} />
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/admin" component={Admin} />
       
       {/* Public Routes with Layout */}
       <Route path="/">
@@ -152,7 +155,8 @@ function Router() {
       </Route>
 
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </>
   );
 }
 
