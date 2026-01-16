@@ -192,3 +192,8 @@ export default function Rooftop() {
             </motion.div>
           </div>
         </section>
+
+      </div>
+    </div>
+  );
+}
