@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { rooms } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
+import BookingDialog from "@/components/BookingDialog";
 import { Wifi, Monitor, Coffee, Wind } from "lucide-react";
 import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 
@@ -68,9 +69,7 @@ export default function Rooms() {
                 </div>
 
                 <div className="flex gap-4">
-                  <Button className="flex-1 bg-primary text-primary-foreground hover:bg-white hover:text-black rounded-none uppercase tracking-widest text-xs font-bold py-6">
-                    Book Now
-                  </Button>
+                  <BookingDialog roomType={room.name} price={room.price} />
                   <Button variant="outline" className="flex-1 border-border text-foreground hover:bg-secondary rounded-none uppercase tracking-widest text-xs font-bold py-6">
                     View Details
                   </Button>
