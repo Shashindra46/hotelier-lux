@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { rooms } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
 import BookingDialog from "@/components/BookingDialog";
-import { Wifi, Monitor, Coffee, Wind } from "lucide-react";
+import ProgressiveImage from "@/components/ProgressiveImage";
 
 import royalOceanVillaImage from "@assets/generated_images/royal_ocean_villa_beachfront.png";
 import azureSuiteImage from "@assets/generated_images/azure_suite_modern_coastal.png";
@@ -41,13 +41,13 @@ export default function Rooms() {
               className="group grid grid-cols-1 md:grid-cols-2 gap-0 border border-border bg-card overflow-hidden hover:border-primary/50 transition-colors duration-300"
             >
               <div className="h-64 md:h-96 overflow-hidden relative">
-                <img 
+                <ProgressiveImage 
                   src={roomImages[room.id]}
-                  alt={room.name} 
-                  loading="lazy"
+                  alt={room.name}
+                  containerClassName="w-full h-full"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-xs uppercase font-bold px-3 py-1 tracking-widest">
+                <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-xs uppercase font-bold px-3 py-1 tracking-widest z-10">
                   {room.category}
                 </div>
               </div>

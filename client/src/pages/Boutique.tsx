@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ShoppingBag, Shirt, Watch } from "lucide-react";
 import BoutiqueInquiryDialog from "@/components/BoutiqueInquiryDialog";
+import ProgressiveImage from "@/components/ProgressiveImage";
 
 import linenShirtImage from "@assets/generated_images/men's_linen_shirt_product.png";
 import linenDressImage from "@assets/generated_images/women's_linen_dress_product.png";
@@ -41,10 +42,10 @@ function ProductCard({ product }: { product: { name: string; price: number; imag
       className="bg-card border border-border group"
     >
       <div className="aspect-square overflow-hidden">
-        <img 
+        <ProgressiveImage 
           src={product.image} 
           alt={product.name}
-          loading="lazy"
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
