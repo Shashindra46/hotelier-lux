@@ -42,10 +42,9 @@ export default function Home() {
           muted 
           loop 
           playsInline
-          preload="metadata"
-          onCanPlay={() => setVideoLoaded(true)}
-          onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover z-[1] transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          preload="none"
+          onCanPlayThrough={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover z-[1] transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
@@ -154,14 +153,14 @@ export default function Home() {
                  whileInView={{ opacity: 1, y: 0 }}
                  viewport={{ once: true }}
                  transition={{ delay: i * 0.2, duration: 0.8 }}
-                 className="group relative h-[500px] overflow-hidden cursor-pointer shadow-lg"
+                 className="group relative h-[500px] overflow-hidden cursor-pointer shadow-lg bg-neutral-200"
                >
                  <Link href={item.link}>
-                   <div className="w-full h-full relative">
+                   <div className="w-full h-full relative bg-neutral-200">
                      <img 
                        src={item.img} 
                        alt={item.title} 
-                       loading="lazy"
+                       fetchPriority="high"
                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110" 
                      />
                      {/* Bottom gradient overlay for text readability */}
