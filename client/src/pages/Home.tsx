@@ -149,15 +149,17 @@ export default function Home() {
                >
                  <Link href={item.link}>
                    <div className="w-full h-full relative">
-                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10" />
                      <img 
                        src={item.img} 
                        alt={item.title} 
                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110" 
                      />
-                     <div className="absolute bottom-10 left-0 right-0 text-center z-20 text-white">
-                        <p className="text-xs uppercase tracking-[0.2em] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">{item.subtitle}</p>
-                        <h3 className="text-3xl font-serif tracking-wide group-hover:-translate-y-2 transition-transform duration-500">{item.title}</h3>
+                     {/* Bottom gradient overlay for text readability */}
+                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
+                     {/* Text container with proper spacing */}
+                     <div className="absolute bottom-0 left-0 right-0 z-20 p-8 pb-10 text-center flex flex-col items-center justify-end">
+                        <p className="text-sm uppercase tracking-[0.3em] mb-4 text-[#D4AF37] font-bold opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 drop-shadow-lg">{item.subtitle}</p>
+                        <h3 className="text-4xl font-serif font-bold tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:-translate-y-2 transition-transform duration-500">{item.title}</h3>
                      </div>
                    </div>
                  </Link>
