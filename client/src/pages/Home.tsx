@@ -75,62 +75,63 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Quick Booking Bar */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="absolute bottom-0 left-0 right-0 z-30"
-        >
-          <div className="container mx-auto px-6">
-            <div className="bg-white/95 backdrop-blur-md shadow-2xl p-6 flex flex-col md:flex-row gap-4 items-end">
-              <div className="flex-1 w-full md:w-auto">
-                <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block">Check-in</label>
-                <div className="relative">
-                  <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                  <Input type="date" className="pl-10 rounded-none border-border" data-testid="input-quick-checkin" />
-                </div>
-              </div>
-              <div className="flex-1 w-full md:w-auto">
-                <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block">Check-out</label>
-                <div className="relative">
-                  <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                  <Input type="date" className="pl-10 rounded-none border-border" data-testid="input-quick-checkout" />
-                </div>
-              </div>
-              <div className="flex-1 w-full md:w-auto">
-                <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block">Room Type</label>
-                <Select value={selectedRoom} onValueChange={setSelectedRoom}>
-                  <SelectTrigger className="rounded-none border-border" data-testid="select-quick-room">
-                    <SelectValue placeholder="Select Room" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {roomTypes.map((room) => (
-                      <SelectItem key={room.value} value={room.value}>
-                        {room.label} - ${room.price}/night
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="w-full md:w-auto">
-                {selectedRoomData ? (
-                  <BookingDialog roomType={selectedRoomData.value} price={selectedRoomData.price} />
-                ) : (
-                  <Link href="/rooms">
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase">
-                      <Search size={16} className="mr-2" /> Check Availability
-                    </Button>
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </section>
 
+      {/* Quick Booking Bar - Separate Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+        className="relative z-40 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border-y border-primary/20"
+      >
+        <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
+          <div className="bg-white/95 backdrop-blur-md shadow-xl border border-primary/10 p-4 md:p-6 flex flex-col lg:flex-row gap-4 items-stretch lg:items-end max-w-6xl mx-auto">
+            <div className="flex-1">
+              <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block font-medium">Check-in</label>
+              <div className="relative">
+                <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-primary/60" />
+                <Input type="date" className="pl-10 rounded-none border-primary/20 focus:border-primary h-12" data-testid="input-quick-checkin" />
+              </div>
+            </div>
+            <div className="flex-1">
+              <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block font-medium">Check-out</label>
+              <div className="relative">
+                <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-primary/60" />
+                <Input type="date" className="pl-10 rounded-none border-primary/20 focus:border-primary h-12" data-testid="input-quick-checkout" />
+              </div>
+            </div>
+            <div className="flex-1">
+              <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block font-medium">Room Type</label>
+              <Select value={selectedRoom} onValueChange={setSelectedRoom}>
+                <SelectTrigger className="rounded-none border-primary/20 h-12" data-testid="select-quick-room">
+                  <SelectValue placeholder="Select Room" />
+                </SelectTrigger>
+                <SelectContent>
+                  {roomTypes.map((room) => (
+                    <SelectItem key={room.value} value={room.value}>
+                      {room.label} - ${room.price}/night
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="lg:w-auto">
+              {selectedRoomData ? (
+                <BookingDialog roomType={selectedRoomData.value} price={selectedRoomData.price} />
+              ) : (
+                <Link href="/rooms">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 h-12 text-xs tracking-[0.2em] uppercase" data-testid="button-check-availability">
+                    <Search size={16} className="mr-2" /> Check Availability
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       {/* Experience Section - 3 Columns */}
-      <section className="py-0 relative -mt-20 z-30">
+      <section className="py-12 relative z-30 bg-background">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
              {[
