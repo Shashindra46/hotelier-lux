@@ -64,11 +64,12 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
               <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input 
                 type="password" 
-                placeholder="Enter password (admin123)" 
+                placeholder="Enter password" 
                 className="pl-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 data-testid="input-admin-password"
+                autoComplete="current-password"
               />
             </div>
             <Button 
