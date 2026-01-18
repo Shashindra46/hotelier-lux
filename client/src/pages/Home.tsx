@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import BookingDialog from "@/components/BookingDialog";
 import heroVideo from "@assets/generated_videos/luxury_beach_resort_sunset.mp4";
-import heroImage from "@assets/generated_images/kabalana_beach_drone_shot.png";
 import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import experienceImage from "@assets/generated_images/surfing_kabalana_beach.png";
@@ -29,13 +28,13 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section with Video */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-screen w-full overflow-hidden bg-[#1a1a1a]">
         <video 
           autoPlay 
           muted 
           loop 
           playsInline
-          poster={heroImage}
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={heroVideo} type="video/mp4" />
