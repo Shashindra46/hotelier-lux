@@ -19,6 +19,7 @@ const roomTypes = [
 
 export default function Home() {
   const [selectedRoom, setSelectedRoom] = useState("");
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const selectedRoomData = roomTypes.find(r => r.value === selectedRoom);
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -35,7 +36,9 @@ export default function Home() {
           loop 
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          onCanPlay={() => setVideoLoaded(true)}
+          onLoadedData={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
