@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import BookingDialog from "@/components/BookingDialog";
-import heroVideo from "@assets/generated_videos/luxury_beach_resort_sunset.mp4";
-import heroPoster from "@assets/generated_images/beach_resort_sunset_poster.png";
+import heroImage from "@assets/generated_images/beach_resort_sunset_poster.png";
 import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import experienceImage from "@assets/generated_images/surfing_kabalana_beach.png";
@@ -20,7 +19,6 @@ const roomTypes = [
 
 export default function Home() {
   const [selectedRoom, setSelectedRoom] = useState("");
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const selectedRoomData = roomTypes.find(r => r.value === selectedRoom);
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -29,26 +27,15 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      {/* Hero Section with Video */}
+      {/* Hero Section with Static Image */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Poster image shown instantly while video loads */}
         <img 
-          src={heroPoster} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          src={heroImage} 
+          alt="Lumière Beach Resort - Luxury beachfront view" 
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          preload="none"
-          onCanPlayThrough={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover z-[1] transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/30 z-10" />
+        <div className="absolute inset-0 bg-black/30" />
         
         <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
           <motion.h2 
@@ -201,10 +188,8 @@ export default function Home() {
               paradise awaits.
             </p>
             <div className="pt-8">
-              <Link href="/rooms">
-                <a className="inline-flex items-center gap-3 text-foreground hover:text-primary transition-colors uppercase tracking-[0.2em] text-[10px] font-bold border-b border-gray-300 pb-2 hover:border-primary">
-                  Explore The Resort <ArrowRight size={14} />
-                </a>
+              <Link href="/rooms" className="inline-flex items-center gap-3 text-foreground hover:text-primary transition-colors uppercase tracking-[0.2em] text-[10px] font-bold border-b border-gray-300 pb-2 hover:border-primary">
+                Explore The Resort <ArrowRight size={14} />
               </Link>
             </div>
           </motion.div>
