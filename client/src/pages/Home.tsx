@@ -192,7 +192,7 @@ export default function Home() {
               paradise awaits.
             </p>
             <div className="pt-8">
-              <Link href="/contact">
+              <Link href="/rooms">
                 <a className="inline-flex items-center gap-3 text-foreground hover:text-primary transition-colors uppercase tracking-[0.2em] text-[10px] font-bold border-b border-gray-300 pb-2 hover:border-primary">
                   Explore The Resort <ArrowRight size={14} />
                 </a>
