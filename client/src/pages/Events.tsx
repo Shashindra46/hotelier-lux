@@ -46,6 +46,7 @@ export default function Events() {
                 <img 
                   src={imageMap[event.id] || poolImage} 
                   alt={event.title} 
+                  loading="lazy"
                   className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>

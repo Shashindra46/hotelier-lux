@@ -128,6 +128,7 @@ export default function RoomDetails() {
             <img 
               src={roomGalleries[room.id][0].src} 
               alt={roomGalleries[room.id][0].alt}
+              loading="lazy"
               className="w-full h-full object-cover min-h-[300px] md:min-h-[500px]"
             />
           </div>
@@ -136,6 +137,7 @@ export default function RoomDetails() {
               <img 
                 src={img.src} 
                 alt={img.alt}
+                loading="lazy"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>

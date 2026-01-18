@@ -44,6 +44,7 @@ export default function Rooms() {
                 <img 
                   src={roomImages[room.id]}
                   alt={room.name} 
+                  loading="lazy"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-xs uppercase font-bold px-3 py-1 tracking-widest">

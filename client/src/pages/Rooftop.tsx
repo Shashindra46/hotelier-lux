@@ -68,6 +68,7 @@ export default function Rooftop() {
               <img 
                 src={cafeImage} 
                 alt="Skyline Cafe" 
+                loading="lazy"
                 className="w-full h-[500px] object-cover shadow-2xl"
               />
             </motion.div>
@@ -88,6 +89,7 @@ export default function Rooftop() {
               <img 
                 src={yogaImage} 
                 alt="Rooftop Yoga" 
+                loading="lazy"
                 className="w-full h-[500px] object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               />
             </motion.div>
@@ -184,6 +186,7 @@ export default function Rooftop() {
               <img 
                 src={djImage} 
                 alt="Sunset DJ Party" 
+                loading="lazy"
                 className="w-full h-[500px] object-cover shadow-2xl"
               />
             </motion.div>

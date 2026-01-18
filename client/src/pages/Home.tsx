@@ -42,7 +42,7 @@ export default function Home() {
           muted 
           loop 
           playsInline
-          preload="auto"
+          preload="metadata"
           onCanPlay={() => setVideoLoaded(true)}
           onLoadedData={() => setVideoLoaded(true)}
           className={`absolute inset-0 w-full h-full object-cover z-[1] transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -161,6 +161,7 @@ export default function Home() {
                      <img 
                        src={item.img} 
                        alt={item.title} 
+                       loading="lazy"
                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110" 
                      />
                      {/* Bottom gradient overlay for text readability */}
