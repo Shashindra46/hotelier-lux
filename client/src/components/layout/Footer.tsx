@@ -29,9 +29,10 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-serif font-semibold mb-6 tracking-wide">Contact</h3>
           <ul className="space-y-4 text-sm text-muted-foreground">
-            <li>Kabalana Beach, Ahangama, Sri Lanka</li>
+            <li>No. 42, Kabalana Beach Road,</li>
+            <li>Ahangama 80650, Sri Lanka</li>
             <li>+94 77 123 4567</li>
-            <li>reservations@lumiere-kabalana.com</li>
+            <li><a href="mailto:info@lumiere.com" className="hover:text-primary transition-colors">info@lumiere.com</a></li>
           </ul>
         </div>
 

@@ -1,28 +1,46 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar, Search } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import BookingDialog from "@/components/BookingDialog";
+import heroVideo from "@assets/generated_videos/luxury_beach_resort_sunset.mp4";
 import heroImage from "@assets/generated_images/kabalana_beach_drone_shot.png";
 import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import experienceImage from "@assets/generated_images/surfing_kabalana_beach.png";
 
+const roomTypes = [
+  { value: "Royal Ocean Villa", label: "Royal Ocean Villa", price: 1500 },
+  { value: "Ocean View Suite", label: "Ocean View Suite", price: 950 },
+  { value: "Garden Cabana", label: "Garden Cabana", price: 550 },
+];
+
 export default function Home() {
+  const [selectedRoom, setSelectedRoom] = useState("");
+  const selectedRoomData = roomTypes.find(r => r.value === selectedRoom);
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      {/* Hero Section */}
+      {/* Hero Section with Video */}
       <section className="relative h-screen w-full overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0 animate-subtle-zoom"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
-        {/* Lighter overlay for sunny beach feel - slightly increased opacity for text readability */}
-        <div className="absolute inset-0 bg-black/20 z-10" />
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          poster={heroImage}
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/30 z-10" />
         
         <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
           <motion.h2 
@@ -56,6 +74,59 @@ export default function Home() {
             </Link>
           </motion.div>
         </div>
+
+        {/* Quick Booking Bar */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="absolute bottom-0 left-0 right-0 z-30"
+        >
+          <div className="container mx-auto px-6">
+            <div className="bg-white/95 backdrop-blur-md shadow-2xl p-6 flex flex-col md:flex-row gap-4 items-end">
+              <div className="flex-1 w-full md:w-auto">
+                <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block">Check-in</label>
+                <div className="relative">
+                  <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                  <Input type="date" className="pl-10 rounded-none border-border" data-testid="input-quick-checkin" />
+                </div>
+              </div>
+              <div className="flex-1 w-full md:w-auto">
+                <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block">Check-out</label>
+                <div className="relative">
+                  <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                  <Input type="date" className="pl-10 rounded-none border-border" data-testid="input-quick-checkout" />
+                </div>
+              </div>
+              <div className="flex-1 w-full md:w-auto">
+                <label className="text-xs text-muted-foreground uppercase tracking-widest mb-2 block">Room Type</label>
+                <Select value={selectedRoom} onValueChange={setSelectedRoom}>
+                  <SelectTrigger className="rounded-none border-border" data-testid="select-quick-room">
+                    <SelectValue placeholder="Select Room" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {roomTypes.map((room) => (
+                      <SelectItem key={room.value} value={room.value}>
+                        {room.label} - ${room.price}/night
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="w-full md:w-auto">
+                {selectedRoomData ? (
+                  <BookingDialog roomType={selectedRoomData.value} price={selectedRoomData.price} />
+                ) : (
+                  <Link href="/rooms">
+                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-8 py-6 text-xs tracking-[0.2em] uppercase">
+                      <Search size={16} className="mr-2" /> Check Availability
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Experience Section - 3 Columns */}
