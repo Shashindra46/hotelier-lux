@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import BookingDialog from "@/components/BookingDialog";
 import heroVideo from "@assets/generated_videos/luxury_beach_resort_sunset.mp4";
+import heroPoster from "@assets/generated_images/beach_resort_sunset_poster.png";
 import roomImage from "@assets/generated_images/beachfront_villa_plunge_pool.png";
 import diningImage from "@assets/generated_images/sunset_beach_bar.png";
 import experienceImage from "@assets/generated_images/surfing_kabalana_beach.png";
@@ -29,7 +30,13 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section with Video */}
-      <section className="relative h-screen w-full overflow-hidden bg-[#1a1a1a]">
+      <section className="relative h-screen w-full overflow-hidden">
+        {/* Poster image shown instantly while video loads */}
+        <img 
+          src={heroPoster} 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
         <video 
           autoPlay 
           muted 
@@ -38,7 +45,7 @@ export default function Home() {
           preload="auto"
           onCanPlay={() => setVideoLoaded(true)}
           onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 w-full h-full object-cover z-[1] transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
