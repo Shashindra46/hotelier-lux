@@ -26,6 +26,12 @@
         "created_at": "2026-01-16 10:22:27.542746"
       }
     ],
-    "users": []
+    "users": [
+      {
+        "id": "8f18e2f9-f12b-402d-a8f5-f838d9395835",
+        "username": "admin",
+        "password": "admin123"
+      }
+    ]
   }
 }
