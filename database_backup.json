@@ -1,0 +1,31 @@
+{
+  "exported_at": "2026-01-19",
+  "database": "lumiere_beach_resort",
+  "tables": {
+    "bookings": [
+      {
+        "id": "d6f25c06-5e8d-4df0-8dbb-5193f1a83bec",
+        "name": "lochana",
+        "email": "shashindralochana@gmail.com",
+        "phone": "0776853212",
+        "room_type": "Royal Ocean Villa",
+        "check_in": "2026-01-07",
+        "check_out": "2026-01-10",
+        "guests": 2,
+        "special_requests": "",
+        "created_at": "2026-01-16 09:01:17.68644"
+      }
+    ],
+    "inquiries": [
+      {
+        "id": "eaa18db9-f5aa-4308-8034-13e8ea7a4623",
+        "name": "lochana",
+        "email": "shashindralochana@gmail.com",
+        "subject": "aa",
+        "message": "xs",
+        "created_at": "2026-01-16 10:22:27.542746"
+      }
+    ],
+    "users": []
+  }
+}
