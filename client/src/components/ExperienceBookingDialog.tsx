@@ -119,7 +119,7 @@ export default function ExperienceBookingDialog({ experience }: ExperienceBookin
           Reserve Experience
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl">{experience.title}</DialogTitle>
           <DialogDescription>
